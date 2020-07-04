@@ -1,0 +1,1039 @@
+﻿@model NawafizApp.Services.Dtos.OfferDto
+
+@using NawafizApp.Web.Models
+
+<meta name="viewport" content="width=device-width" />
+<link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+
+<style>
+
+    a {
+        text-shadow: none;
+        color: #afab14;
+    }
+
+    .searchform {
+        margin: 7px;
+    }
+
+    #form {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #dee19b;
+        margin-bottom: 5px;
+    }
+
+    html,
+    body,
+    div,
+    span,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    q,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    dialog,
+    figure,
+    footer,
+    header,
+    hgroup,
+    nav,
+    section {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-weight: inherit;
+        font-style: inherit;
+        font-size: 100%;
+        font-family: inherit;
+        vertical-align: baseline;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .anim04c {
+        -webkit-transition: all .4s cubic-bezier(.5, .35, .15, 1.4);
+        transition: all .4s cubic-bezier(.5, .35, .15, 1.4);
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        font-family: 'Source Sans Pro', sans-serif;
+        background: #eee;
+        color: #000;
+    }
+
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    /*-----*/
+
+    .outer {
+        position: relative;
+        top: 50%;
+        z-index: 1;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    /*-----*/
+
+    .signboard {
+        width: 100px;
+        height: 100px;
+        margin: 0px;
+        color: #fff;
+        border-radius: 10px;
+    }
+    /*-----*/
+
+    .front {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        background: #c49f47;
+        text-align: center;
+    }
+
+    .right {
+        position: absolute;
+        right: : 0;
+        z-index: 2;
+        -webkit-transform: rotate(-10deg) translate(7px, 8px);
+        -moz-transform: rotate(-10deg) translate(7px, 8px);
+        -ms-transform: rotate(-10deg) translate(7px, 8px);
+        -o-transform: rotate(-10deg) translate(7px, 8px);
+        transform: rotate(-10deg) translate(7px, 8px);
+        background: #c49f47;
+    }
+
+    .left {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        -webkit-transform: rotate(5deg) translate(-4px, 4px);
+        -moz-transform: rotate(5deg) translate(-4px, 4px);
+        -ms-transform: rotate(5deg) translate(-4px, 4px);
+        -o-transform: rotate(5deg) translate(-4px, 4px);
+        transform: rotate(5deg) translate(-4px, 4px);
+        background: #c49f47;
+    }
+    /*-----*/
+
+    .outer:hover .inner {
+        -webkit-transform: rotate(0) translate(0);
+        -moz-transform: rotate(0) translate(0);
+        -ms-transform: rotate(0) translate(0);
+        -o-transform: rotate(0) translate(0);
+        transform: rotate(0) translate(0);
+    }
+    /*-----*/
+
+    .outer:active .inner {
+        -webkit-transform: rotate(0) translate(0) scale(0.9);
+        -moz-transform: rotate(0) translate(0) scale(0.9);
+        -ms-transform: rotate(0) translate(0) scale(0.9);
+        -o-transform: rotate(0) translate(0) scale(0.9);
+        transform: rotate(0) translate(0) scale(0.9);
+    }
+
+    .outer:active .front .date {
+        -webkit-transform: scale(2);
+    }
+
+    .outer:active .front .day,
+    .outer:active .front .month {
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+    }
+
+    .outer:active .right {
+        -webkit-transform: rotate(-5deg) translateX(80px) scale(0.9);
+        -moz-transform: rotate(-5deg) translateX(80px) scale(0.9);
+        -ms-transform: rotate(-5deg) translateX(80px) scale(0.9);
+        -o-transform: rotate(-5deg) translateX(80px) scale(0.9);
+        transform: rotate(-5deg) translateX(80px) scale(0.9);
+    }
+
+    .outer:active .left {
+        -webkit-transform: rotate(5deg) translateX(-80px) scale(0.9);
+        -moz-transform: rotate(5deg) translateX(-80px) scale(0.9);
+        -ms-transform: rotate(5deg) translateX(-80px) scale(0.9);
+        -o-transform: rotate(5deg) translateX(-80px) scale(0.9);
+        transform: rotate(5deg) translateX(-80px) scale(0.9);
+    }
+    /*-----*/
+
+    .outer:active .calendarMain {
+        -webkit-transform: scale(1.8);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .outer:active .clock {
+        -webkit-transform: scale(1.4);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .outer:active .calendarNormal {
+        bottom: -30px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .outer:active .year {
+        top: -30px;
+        opacity: 1;
+        visibility: visible;
+        letter-spacing: 3px;
+    }
+    /*-----*/
+
+    .calendarMain {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 1;
+    }
+
+    .month,
+    .day {
+        font-size: 11px;
+        line-height: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .date {
+        font-size: 40px;
+        line-height: 40px;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+    /*-----*/
+
+    .clock {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        font-size: 40px;
+        line-height: 100px;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+    }
+    /*-----*/
+
+    .year {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 30px;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        color: #1f1f1f;
+    }
+
+    .calendarNormal {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        font-size: 14px;
+        line-height: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0px;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .date2 {
+        color: #1f1f1f;
+    }
+
+    .day2 {
+        color: #1f1f1f;
+    }
+
+    .month2 {
+        color: #1f1f1f;
+    }
+    /* -- usable codes end -- */
+
+    /* -- unusable codes (text, logo, etc.) -- */
+
+    .info {
+        width: 100%;
+        height: 25%;
+        position: absolute;
+        top: 15%;
+        text-align: center;
+        opacity: 0;
+    }
+
+        .info li {
+            width: 100%;
+        }
+
+    .hover,
+    .click,
+    .yeaa {
+        font-size: 14px;
+        line-height: 25px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0px;
+        text-align: center;
+        bottom: 0;
+        opacity: 1;
+    }
+
+    .dribbble {
+        position: absolute;
+        top: -60px;
+        font-size: 14px;
+        opacity: 0;
+    }
+
+    em {
+        color: #3498DB;
+    }
+
+    .designer {
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        opacity: 0;
+    }
+
+        .designer li {
+            width: 100%;
+            position: absolute;
+            bottom: 30%;
+        }
+
+        .designer a {
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: relative;
+            border-radius: 100%;
+            margin: auto;
+            color: rgba(46, 204, 113, 0.55);
+        }
+
+            .designer a:after {
+                content: "see designs";
+                position: absolute;
+                top: 0;
+                left: 40px;
+                font-size: 14px;
+                line-height: 33px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0px;
+                white-space: nowrap;
+            }
+
+            .designer a:hover:after {
+                color: #2ecc71;
+            }
+
+        .designer img {
+            display: block;
+            border-radius: 100%;
+        }
+
+    body:hover .info,
+    body:hover .designer {
+        opacity: 1;
+    }
+
+    ::selection {
+        background: transparent;
+    }
+
+    ::-moz-selection {
+        background: transparent;
+    }
+</style>
+
+<div class="container-fluid">
+    @using (Html.BeginForm("Edite", "Offer", FormMethod.Post, new
+    {
+        @enctype = "multipart/form-data",
+        id = "invoicePictureForm"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+        <br />
+      
+
+        <div class="form-horizontal">
+            <h4>تعديل العرض</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                @Html.Label("الفئة الرئيسية", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.MainCategetoryOffersId, Selects.MainCategoriesOffer(null), new { @class = "form-control", id = "list1" })
+                    @Html.ValidationMessageFor(model => model.MainCategetoryOffersId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("الفئة الفرعيه", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.SubCategetoryOffersId, new List<SelectListItem> { new SelectListItem { Text = ViewBag.sname, Value = ViewBag.sid, Selected = true, Disabled = false } }, new { @class = "form-control", id = "list2" })
+                    @Html.ValidationMessageFor(model => model.SubCategetoryOffersId, "", new { @class = "text-danger" })
+                    @*<div style="display:none">
+                    @Html.DropDownList("oo", new List<SelectListItem> { new SelectListItem { Value = ViewBag.sid+"", Text = ViewBag.sname+"", Selected = true } }, new { @class = "form-control", id = "dasda" })
+                </div>*@
+                </div>
+            </div>
+                    <div class="form-group">
+                        @Html.Label("عنوان العرض بالعربي", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Atitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Atitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+              
+           
+            <div class="form-group">
+                @Html.Label("عنوان العرض الانكليزي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Etitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Etitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("عنوان العرض الفرنسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Ftitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ftitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("عنوان العرض الفارسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Ptitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ptitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("عنوان العرض الروسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Rtitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Rtitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.Label(" تفاصيل العرض العربي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Adetails, new { htmlAttributes = new { @class = "form-control" } })<br />
+                    @Html.ValidationMessageFor(model => model.Adetails, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.Label(" تفاصيل العرض الانكليزي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Edetails, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Edetails, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.Label(" تفاصيل العرض الفرنسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Fdetails, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Fdetails, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.Label(" تفاصيل العرض الفارسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Pdetails, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pdetails, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.Label(" تفاصيل العرض الروسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Rdetails, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Rdetails, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("صورة رقمية للعرض", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="btn btn-default image-preview-input" style="width:258px">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">أدخل الصورة</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="file" /> <!-- rename it -->
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(" صورة رقمية2 للعرض", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="btn btn-default image-preview-input" style="position:relative;margin-bottom:10px">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">أدخل الصورة</span>
+                        <input type="file" class="file" accept="image/png, image/jpeg, image/gif" name="file1" /> <!-- rename it -->
+                        @*<span id="fup" class="error" style="display:none;color:#ed6b75;position:absolute;bottom:-19px;right:0">ادخل صوره للعربيه</span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(" صورة رقمية3 للعرض", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">أدخل الصورة</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="file2" id="fileEn" /> <!-- rename it -->
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(" صورة رقمية4 للعرض ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">أدخل الصورة</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="file3" /> <!-- rename it -->
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2"> تاريخ بداية العرض</label>
+                <div class="col-md-3">
+                    <div style="position:relative;margin-bottom:10px">
+                        <input name="start" id="dd" class="form-control date-picker" data-date-format="dd/mm/yyyy" type="text" value="">
+                        <span id="fup" class="error" style="display:none;color:#ed6b75;position:absolute;bottom:-19px;right:0">تاريخ بداية العرض مطلوب</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2"> تاريخ نهاية العرض</label>
+                <div class="col-md-3">
+                    <div style="position:relative;margin-bottom:10px">
+                        <input name="end" id="ddd" class="form-control date-picker" data-date-format="dd/mm/yyyy" type="text" value="">
+                        <span id="fup1" class="error" style="display:none;color:#ed6b75;position:absolute;bottom:-19px;right:0">تاريخ نهاية العرض مطلوب</span>
+                        <span id="fup2" class="error" style="display:none;color:#ed6b75;position:absolute;bottom:-19px;right:0">تاريخ النهاية اضغر من تاريخ البدايه</span>
+                    </div>
+
+                </div>
+            </div>
+         
+            @*<br />
+            <h4>معلومات الاتصال</h4>
+            <hr />*@
+     
+                <div class="form-group">
+                    @Html.Label("موبايل1", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.phon1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phon1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("موبايل2", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.phon2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phon2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("موبايل3", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.phon3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phon3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("ارضي1", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.phon4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phon4, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("ارضي2", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.phon5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phon5, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("ارضي3", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.phon6, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phon1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("رابط فيس", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.faceLink, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.faceLink, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("رابط انستا", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.instaLink, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.instaLink, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("رقم واتس", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.Whatsphon, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Whatsphon, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            
+            <div class="form-group" style="display:none">
+
+                @Html.Label("تاريخ نشر العرض", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class='input-group date' id='datetimepicker10'>
+
+                        @Html.EditorFor(model => model.Dateofpuplishing, new { htmlAttributes = new { @class = "form-control datepicker", @id = "strDate", @readonly = "readonly" } })
+
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="display:none">
+
+                @Html.Label("وقت نشر العرض", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class='input-group date' id='datetimepicker10'>
+
+                        @Html.EditorFor(model => model.Timeofpuplishing, new { htmlAttributes = new { @class = "form-control datepicker", @id = "strDate", @readonly = "readonly" } })
+
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="display:none">
+
+                @Html.Label("بداية العرض", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class='input-group date' >
+
+                        @Html.EditorFor(model => model.startstr, new { htmlAttributes = new { @class = "form-control datepicker", @id = "start", @readonly = "readonly" } })
+
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="display:none">
+
+                @Html.Label("نهاية", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class='input-group date' >
+
+                        @Html.EditorFor(model => model.endtstr, new { htmlAttributes = new { @class = "form-control datepicker", @id = "end", @readonly = "readonly" } })
+
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10  ">
+                    <input type="submit" value="حفظ" class="btn btn-default " onclick="return confirm('هل تريد الحفظ بالتأكيد؟'); " />
+                </div>
+            </div>
+
+        </div>
+
+    }
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#dd").change(function () {
+            uploadFile();
+        });
+        $("#ddd").change(function () {
+            uploadFile1();
+            uploadFile2();
+        });
+    });
+    function uploadFile() {
+        var filename = $('#dd').val();
+        var filename1 = $('#ddd').val();
+        $("#start").val(filename);
+        $("#end").val(filename1);
+        var s = $("#start").val();
+        var b = $("#end").val();
+       //alert(s);
+       //alert(b);
+       var date1 = s  /*february 25th*/
+       var date2 = b;  /*february 26th*/
+
+        if (filename == '') {
+            $("#fup").show();
+
+
+        }
+       else {
+            $("#fup").hide();
+
+        }
+
+        if (filename1 == '') {
+
+            $("#fup1").show();
+        }
+        else {
+
+            $("#fup1").hide();
+
+        }
+        if ($.datepicker.parseDate('dd/mm/yy', date2) < $.datepicker.parseDate('dd/mm/yy', date1) && filename != '' && filename1 != '') {
+
+            $("#fup2").show();
+
+        }
+        else {
+            $("#fup2").hide();
+        }
+        //if (filename < filename1 && filename != '') {
+        //    $("#fup2").show();
+        //}
+        //else {
+        //    $("#fup2").hide();
+
+        //}
+
+    }
+    function uploadFile1() {
+
+        var filename1 = $('#ddd').val();
+        var filename = $('#dd').val();
+        if (filename1 == '') {
+
+            $("#fup1").show();
+        }
+        else {
+            $("#fup1").hide();
+
+        }
+        $("#start").val(filename);
+        $("#end").val(filename1);
+        var s = $("#start").val();
+        var b = $("#end").val();
+        //alert(s);
+        //alert(b);
+        var date1 = s  /*february 25th*/
+        var date2 = b;  /*february 26th*/
+        if ($.datepicker.parseDate('dd/mm/yy', date2) < $.datepicker.parseDate('dd/mm/yy', date1) && filename1 != '') {
+
+            $("#fup2").show();
+
+        }
+        else {
+            $("#fup2").hide();
+        }
+    }
+
+</script>
+<script>
+
+    $(document).ready(function () {
+        var x = $("#start").val();
+        var xx = $("#end").val();
+        $("#dd").val(x);
+        //alert($("#ddd").val().toString());
+        $("#ddd").val(xx);
+        //alert($("#dd").val().toString());     
+        @*$.ajax({
+            type: 'post',
+            url: '@Url.Action("getConvinientsubCat", "Offer")',
+            data: { sid: $("#list1").val() },
+            success: function (data) {
+
+                // var ddldist2 = $('#listbox').parent().children().last();
+                var ddldist = $('#list2');
+
+                if (data.length == 1) {
+                    //ddldist.html("");// ddldist2.html("");
+                    ddldist.empty();
+
+
+
+                }
+                else {
+
+
+                    ddldist.empty();
+
+                    $.each(data, function (Val, Text) {
+
+
+
+                        ddldist.append(
+                            $('<option></option>').val(this.Value).html(this.Text)
+                        );
+
+                    });
+
+
+
+
+
+
+
+                }
+                if ((this).val() == "-1") { ddldist.empty(); }
+            }
+        });*@
+       
+
+        
+      
+        });
+  
+</script>
+<script>
+  $("#list1").change(function () {
+
+
+                 $.ajax({
+                     type: 'post',
+                     url: '@Url.Action("getConvinientsubCat", "Offer")',
+                     data: { sid: $(this).val() },
+                     success: function (data) {
+
+                         // var ddldist2 = $('#listbox').parent().children().last();
+                         var ddldist = $('#list2');
+
+                         if (data.length == 1) {
+                             //ddldist.html("");// ddldist2.html("");
+                             ddldist.empty();
+
+
+
+                         }
+                         else {
+
+
+                             ddldist.empty();
+
+                             $.each(data, function (Val, Text) {
+
+
+
+                                 ddldist.append(
+                                     $('<option></option>').val(this.Value).html(this.Text)
+                                 );
+
+                             });
+
+
+
+
+
+
+
+                         }
+                         if ((this).val() == "-1") { ddldist.empty();}
+                     }
+                 });
+             });
+</script>
+
+<script>
+  $("#list3").change(function () {
+
+
+                 $.ajax({
+                     type: 'post',
+                     url: '@Url.Action("getConvinientsubCat", "Offer")',
+                     data: { sid: $(this).val() },
+                     success: function (data) {
+
+                         // var ddldist2 = $('#listbox').parent().children().last();
+                         var ddldist = $('#list4');
+
+                         if (data.length == 1) {
+                             //ddldist.html("");// ddldist2.html("");
+                             ddldist.empty();
+
+
+
+                         }
+                         else {
+
+
+                             ddldist.empty();
+
+                             $.each(data, function (Val, Text) {
+
+
+
+                                 ddldist.append(
+                                     $('<option></option>').val(this.Value).html(this.Text)
+                                 );
+
+                             });
+
+
+
+
+
+
+
+                         }
+                         if ((this).val() == "-1") { ddldist.empty();}
+                     }
+                 });
+             });
+</script>
+<script>
+    $(document).ready(function () {
+
+        var monthNames = ["كانون الثاني", "شباط", "اذار", "نيسان", "أيار", "حزيران", "تموز", "أب", "أيلول", "تشرين الأول", "تشرين الثاني", "كانون الأول"];
+        var dayNames = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+
+        var newDate = new Date();
+        newDate.setDate(newDate.getDate());
+
+        setInterval(function () {
+            var hours = new Date().getHours();
+            $(".hour").html((hours < 10 ? "0" : "") + hours);
+            var seconds = new Date().getSeconds();
+            $(".second").html((seconds < 10 ? "0" : "") + seconds);
+            var minutes = new Date().getMinutes();
+            $(".minute").html((minutes < 10 ? "0" : "") + minutes);
+
+            $(".month span,.month2 span").text(monthNames[newDate.getMonth()]);
+            $(".date span,.date2 span").text(newDate.getDate());
+            $(".day span,.day2 span").text(dayNames[newDate.getDay()]);
+            $(".year span").html(newDate.getFullYear());
+        }, 1000);
+
+
+
+        $(".outer").on({
+            mousedown: function () {
+                $(".dribbble").css("opacity", "1");
+            },
+            mouseup: function () {
+                $(".dribbble").css("opacity", "0");
+            }
+        });
+
+
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(function () {
+
+            $("#datetimepicker10").datetimepicker({
+                viewMode: 'days',
+                format: 'DD/MM/YYYY', icons: { time: "fa fa-clock-o" }
+            });
+            $("#datetimepicker11").datetimepicker({
+                viewMode: 'days',
+                format: 'DD/MM/YYYY'
+            });
+
+        });
+                         });
+
+</script>

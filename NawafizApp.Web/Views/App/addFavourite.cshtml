@@ -1,0 +1,85 @@
+﻿@model NawafizApp.Services.Dtos.FavouriteDto
+@using NawafizApp.Web.Models
+
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i> الاهتمامات
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group col-md-6">
+                    @Html.Label("الاسم العربي", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ArabicName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ArabicName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    @Html.Label("الاسم الانكليزي", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.EngName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EngName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    @Html.Label("الاسم الفرنسي", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.FrenchName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FrenchName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    @Html.Label("الاسم الروسي", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.RussName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.RussName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6 ">
+                    @Html.Label("الاسم الفاسي", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PersianName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PersianName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6 ">
+                    @Html.Label("الفئات الفرعية", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <select id="multiple" name="subCatIds" class="form-control select2-multiple select2-hidden-accessible" multiple="multiple" tabindex="-1" aria-hidden="true" required="true">
+                            @foreach (var item in Selects.subcatDals(null))
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+
+                        </select>
+                        @Html.ValidationMessageFor(model => model.subCatIds, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="اضافة" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+        <div style="margin-top:5%;">
+            @{ Html.RenderAction("getAllFavourite"); }
+        </div>
+
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>

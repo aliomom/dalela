@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>تفاصيل المستخدم </h2>
+
+<style>
+    .dropbtn2 {
+        background-color: #36c6d3;
+        color: white;
+        padding: 7px 5px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        /* Dropdown button on hover & focus */
+        .dropbtn2:hover, .dropbtn2:focus {
+            text-decoration: none;
+            color: white;
+            background-color: #199da9;
+        }
+</style>
+
+<div style="margin-right:235px;">
+
+    @model NawafizApp.Services.Dtos.UserDto
+
+    @using (Html.BeginForm("EditUser", "Users", FormMethod.Post))
+    {
+        <div style="margin-right:20px;">
+
+            <blockquote style="border:1px ridge white;text-align:center;" title="تعديل المستخدم">
+                <h2 style="color:white;text-align:center;">تعديل المستخدم</h2>
+                @Html.TextBoxFor(m => m.UserId, new { @Value = ViewBag.UserId, @style = "display:none;" } );
+                <h4 style="color:white;display:inline">اسم المستخدم</h4>
+                @Html.TextBoxFor(m => m.UserName, new { @Value = ViewBag.UserName });
+                <h4 style="color:white;display:inline">البريد الإلكتروني</h4>
+                @Html.TextBoxFor(m => m.Email, new { @Value = ViewBag.Email});
+                <h4 style="color:white;display:inline;margin-right:20px;">تاريخ الإنشاء</h4>
+                @Html.TextBoxFor(m => m.CreationDate, new { @Value = ViewBag.Date });
+                <h4 style="color:white;display:inline;margin-right:20px;">الاسم الكامل</h4>
+                @Html.TextBoxFor(m => m.FullName, new { @Value = ViewBag.FullName });
+                <h4 style="color:white;display:inline;margin-right:20px;">رقم الهاتف</h4>
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @Value = ViewBag.Phone });
+                <h4 style="color:white;display:inline;margin-right:20px;">الصلاحيات</h4>
+                @Html.TextBoxFor(m => m.Role, new { @Value = ViewBag.Role });
+                @*@Html.TextBoxFor(m => m.CityId,new {@style = "display:none;" },new { @Value = @ViewBag.city });*@
+                @*@Html.TextBoxFor(m => m.CityId, new { @Value = ViewBag.city, @readonly = "readonly", @style = "background-color:#364150;color:white;" });*@
+                <button type="submit" class="dropbtn2">حفظ التعديل</button>
+                @Html.ActionLink("الغاء", "Users", "Users", new { @class = "dropbtn2", @style = "text-decoration:none;" });<br/>
+                @Html.ActionLink("رؤية إعلانات المستخدم", "Classified", "Home", new { @UserId = ViewBag.UserId }, new { @class = "dropbtn2" })
+            </blockquote>
+        </div>
+    }
+    </div>

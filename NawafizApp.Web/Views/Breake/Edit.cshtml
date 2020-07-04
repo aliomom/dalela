@@ -1,0 +1,79 @@
+﻿@model NawafizApp.Services.Dtos.BreakDto
+
+<style>
+    a {
+        text-shadow: none;
+        color: #afab14;
+    }
+</style>
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>تعديل اوقات الاستراحه
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>BreakDto</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4">بداية الاستراحه</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+
+                                @Html.EditorFor(model => model.sstr, new { htmlAttributes = new { @class = "form-control timepicker timepicker-no-seconds", autocomplete = "off", @id = "starts" } })
+                                <span class="input-group-btn">
+                                    <button class="btn default" type="button">
+                                        <i class="fa fa-clock-o"></i>
+                                    </button>
+
+                                </span>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.sstr, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4">نهاية الاستراحه</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+
+                                @Html.EditorFor(model => model.estr, new { htmlAttributes = new { @class = "form-control timepicker timepicker-no-seconds", autocomplete = "off", @id = "end" } })
+
+                                <span class="input-group-btn">
+                                    <button class="btn default" type="button">
+                                        <i class="fa fa-clock-o"></i>
+                                    </button>
+                                </span>
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.estr, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <input name="ShopDalId" type="text" hidden="hidden" id="shopid" value="@ViewBag.bid" />
+
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-md-2 col-xs-9 col-sm-2">
+                        <input type="submit" value="تعديل" class="btn btn-warning" style="width:100%" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    </div>
+    

@@ -1,0 +1,115 @@
+﻿@model NawafizApp.Services.Dtos.FilterGalleryPhotoDto
+@using NawafizApp.Web.Models;
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>معرض الصور
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Ajax.BeginForm("getAllBranchFilter", "GalleryPhoto", new { filter = Model }, new AjaxOptions { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace, HttpMethod = "get", LoadingElementId = "wait", LoadingElementDuration = 9000 }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group col-md-6 ">
+
+                    @Html.Label("اسم الفرع", htmlAttributes: new { @class = "control-label col-md-4" })
+
+                    <div class="form-group col-md-8">
+
+                        <div class="input-group select2-bootstrap-prepend" style="width:105%">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" data-select2-open="single-prepend-text">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                            <select id="single-prepend-text" name="bname" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                <option></option>
+                                @foreach (var item in Selects.Branches(null))
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="بحث" class="btn btn-lg btn-circle" style="background-color:#222222;color:white" />
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="wait" hidden="hidden">
+            <i><b>جاري البحث</b></i>   <img src="~/Images/loader.gif" width="35" height="35" />
+
+
+        </div>
+        <br />
+        <br />
+        
+            <div style="margin-top:5%;" id="table">
+                @{ Html.RenderAction("getAllBranchfilter"); }
+          
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+            $("#list1").change(function () {
+
+
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("getConvinientsubCatSub", "BranchAndShopDal")',
+                    data: { sid: $("#list1").val() },
+                    success: function (data) {
+
+                        // var ddldist2 = $('#listbox').parent().children().last();
+                        var ddldist = $('#list2');
+
+                        if (data.length == 1) {
+                            //ddldist.html("");// ddldist2.html("");
+                            ddldist.empty();
+
+
+
+                        }
+                        else {
+
+
+                            ddldist.empty();
+
+                            $.each(data, function (Val, Text) {
+
+
+
+                                ddldist.append(
+                                    $('<option></option>').val(this.Value).html(this.Text)
+                                );
+
+                            });
+
+
+
+
+
+
+
+                        }
+                        if ((this).val() == "-1") { ddldist.empty(); }
+                    }
+                });
+            });
+</script>

@@ -1,0 +1,127 @@
+﻿@model IEnumerable<NawafizApp.Services.Dtos.BreakDto>
+@using NawafizApp.Web.Models
+@using NawafizApp.Common;
+
+@{
+    Layout = null;
+}
+<link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+<style>
+    td {
+        text-align: center !important;
+    }
+
+    th {
+        text-align: center !important;
+        background-color: #f5f3a7;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 3px;
+        line-height: 1.42857;
+        vertical-align: top;
+        border-top: 1px solid #e7ecf1;
+    }
+
+    .table td, .table th {
+        font-size: 12px;
+    }
+</style>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> # </th>
+                <th> الفرع</th>
+                <th> بداية الاستراحه</th>
+                <th> نهاية الاستراحه</th>
+                <th> تعديل</th>
+                <th> حذف</th>
+
+
+
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @if (item.BranchName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.BranchName)
+                    </td>
+                    <td>
+                        @if (item.start==null)
+                        {
+                            <b>لا يوجد</b>
+                        }
+                    @DateTimeHelper.ConvertTimeToString(item.start, TimeFormats.HH_MM_AM)
+                    </td>
+                    <td>
+                        @if (item.end==null)
+                        {
+                            <b>لا يوجد</b>
+                        }
+                   @DateTimeHelper.ConvertTimeToString(item.end, TimeFormats.HH_MM_AM)
+                    </td>
+
+               
+                    <td>
+                        <a href="@Url.Action("Edit","Breake",new {bid=item.BranchId,id=item.Id })"><img src="~/Images/gold-edit-property-512.png" height="25" width="25" /></a>
+                     </td>
+                    <td>
+                        <a href="@Url.Action("deleteBreake","Breake",new {bid=item.BranchId,id=item.Id })"class="linkDel" ><img src="~/Images/210107.png" height="25" width="25" /></a>
+                    </td>
+                  
+
+
+
+
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-confirm.min.js"></script>
+<script>
+    $('.linkDel').confirm({
+        title: 'تأكيد الحذف !',
+
+        content: 'هل تريد بالتأكيد حذف هذه الاستراحه ؟',
+
+
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            },
+            إلغاء: function () {
+
+            }
+
+
+        }
+    });
+    $('a.twitter').confirm({
+        content: "...",
+    });
+    $('a.twitter').confirm({
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            }
+        }
+    });
+    $(".jconfirm-content-pane").removeClass("no-scroll");
+</script>

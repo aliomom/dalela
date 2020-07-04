@@ -1,0 +1,58 @@
+﻿@using NawafizApp.Web.Models
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_loginLayout.cshtml";
+}
+<style>
+    .form-group.form-md-line-input .form-control {
+        color:#c29d0b;
+        font-size:25px !important;
+    }
+    .form-group.form-md-line-input.form-md-floating-label .form-control~label {
+         color:#c29d0b;
+    }
+    .btn-warning {
+       background-color : #c29d0b;
+       color : #222;
+    }
+
+    
+</style>
+<br />
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
+{
+    if (ViewBag.FormToken != null)
+    {
+        <input name="__RequestVerificationToken" type="hidden" value="@ViewBag.FormToken" />
+    }
+    else
+    {
+      @Html.AntiForgeryToken()
+    }
+    @Html.ValidationSummary(true, "", new { @class = "",@style="color:red;font-size:11px;" })
+
+
+    <div class="form-group form-md-line-input form-md-floating-label has-warning">
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", autocomplete = "off" })
+      
+        <label for="form_control_1">اسم المستخدم</label>
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group form-md-line-input form-md-floating-label has-warning">
+      @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+
+        <label for="form_control_1">كلمة المرور</label>
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-warning" style="width:100%">تسجيل الدخول</button>
+        
+       
+    </div>
+
+
+}

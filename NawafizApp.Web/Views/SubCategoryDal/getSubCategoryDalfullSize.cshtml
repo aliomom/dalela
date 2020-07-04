@@ -1,0 +1,105 @@
+﻿@model NawafizApp.Services.Dtos.SubCategoryDalDto
+<style>
+    b {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+</style>
+<div class="portlet light">
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه العربيه للفئة الفرعية:@Model.ArabicName 
+            </b>
+        </h3>
+    </div>
+    @if (Model.icon!= null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.icon, 0, Model.icon.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+    else
+    {<br />
+        <b>لا يوجد</b>
+    }
+    <br />
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه الانكليزيه للفئة الفرعية:@Model.EngName
+            </b>
+        </h3>
+    </div>
+  @if (Model.iconEn != null)
+  {
+    <div class="portlet-body">
+        <br />
+        <img src="data:image/png;base64,@Convert.ToBase64String(Model.iconEn, 0, Model.iconEn.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+    </div>
+  }
+  else
+  {<br />
+    <b>لا يوجد</b>
+  }
+
+    <br />
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه الفرنسيه للفئة الفرعية:@Model.FrenchName
+            </b>
+        </h3>
+    </div>
+    @if (Model.iconFr != null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.iconFr, 0, Model.iconFr.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+    else
+    {<br />
+        <b>لا يوجد</b>
+    }
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه الفارسي للفئة الفرعية:@Model.PersianName
+            </b>
+        </h3>
+    </div>
+    @if (Model.iconPersian!= null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.iconPersian, 0, Model.iconPersian.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+    else
+    {<br />
+        <b>لا يوجد</b>
+    }
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه الروسيه للفئة الفرعية:@Model.RussName
+            </b>
+        </h3>
+    </div>
+    @if (Model.iconRuss != null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.iconRuss, 0, Model.iconRuss.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+
+    else
+    {<br />
+        <b>لا يوجد</b>
+    }
+    
+  
+</div>

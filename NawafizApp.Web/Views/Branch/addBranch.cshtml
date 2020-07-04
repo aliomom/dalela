@@ -1,0 +1,477 @@
+﻿@model NawafizApp.Services.Dtos.BranchDto
+@using NawafizApp.Web.Models;
+<style>
+    a {
+        text-shadow: none;
+        color: #afab14;
+    }
+
+    .md-checkbox input[type=checkbox]:checked ~ label > .check {
+        opacity: 1;
+        -webkit-transform: scale(1) rotate(-45deg) !important;
+        -moz-transform: scale(1) rotate(-45deg) !important;
+        transform: scale(1) rotate(220deg) !important;
+    }
+
+    .md-checkbox label > .check {
+        top: -4px;
+        right: 6px;
+        width: 10px;
+        height: 20px;
+        border: 2px solid #36c6d3;
+        border-bottom: none;
+        border-right: none;
+        opacity: 0;
+        z-index: 5;
+        -webkit-transform: rotate(-180deg);
+        -moz-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+        -webkit-transition-delay: .3s;
+        -moz-transition-delay: .3s;
+        transition-delay: .3s;
+    }
+
+    .form-md-checkboxes > label {
+        font-size: 14px;
+        color: #1f1f1f;
+        opacity: 1;
+        filter: alpha(opacity=100);
+    }
+
+    .myclass {
+        border-color: #c49f47;
+        border-bottom-style: groove;
+        border-right-style: groove;
+        border-left-style: groove;
+        border-top-style: groove;
+        margin: 26px;
+        box-sizing: border-box;
+        border-bottom-width: thick;
+        border-left-width: thick;
+        border-right-width: thick;
+        border-top-width: thick;
+        padding: 26px;
+    }
+
+    .myclass1 {
+        transform: translateY(-20px);
+    }
+</style>
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>اضافة فرع
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+               
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="myclass">
+                    <div class="myclass1">
+                        <i class="fa fa-gift"></i><span style="font-size:large">اسم الفرع</span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label("اسم الفرع بالعربي", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.branchArabicName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.branchArabicName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.Label("اسم الفرع بالانكليزي", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.branchEnglishName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.branchEnglishName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label("اسم الفرع بالفرنسي", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.branchFrenchName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.branchFrenchName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.Label("اسم الفرع بالفارسي", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.branchPersianName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.branchPersianName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label("اسم الفرع بالروسي", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.branchRussName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.branchRussName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="myclass">
+                    <div class="myclass1">
+                        <i class="fa fa-gift"></i><span style="font-size:large"> معلومات الاتصال</span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label">ايميل1</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon " >
+                                        <i class="fa fa-envelope" style="color:#3f444a;border: 1px solid #e7ecf1;"></i>
+                                    </span>
+                                    @Html.EditorFor(model => model.email1, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+
+                                </div>
+                                @Html.ValidationMessageFor(model => model.email1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label">ايميل2</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope" style="color:#3f444a;border: 1px solid #e7ecf1;"></i>
+                                    </span>
+                                    @Html.EditorFor(model => model.email2, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+
+                                </div>
+                                @Html.ValidationMessageFor(model => model.email2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label("هاتف1", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.phone1, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.phone1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.Label("هاتف2", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.phone2, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.phone2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label("هاتف3", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.phone3, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.phone3, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label">رابط الفيس</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon " style="background-color:#3020b1">
+                                        <i class="fa fa-facebook" style="color:white"></i>
+                                    </span>
+                                    @Html.EditorFor(model => model.facebookLink, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+
+                                </div>
+                                @Html.ValidationMessageFor(model => model.facebookLink, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label">رابط الانستا</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon " style="background-color:white">
+                                        <i class="fa fa-instagram" style="color:#e7505a"></i>
+                                    </span>
+                                    @Html.EditorFor(model => model.instaLink, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+
+                                </div>
+                                @Html.ValidationMessageFor(model => model.instaLink, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-4">بداية الدوام</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    @Html.EditorFor(model => model.sstr, new { htmlAttributes = new { @class = "form-control timepicker timepicker-no-seconds", autocomplete = "off", @id = "starts" } })
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button">
+                                            <i class="fa fa-clock-o"></i>
+                                        </button>
+
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.sstr, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-4">نهاية الدوام</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+
+                                    @Html.EditorFor(model => model.estr, new { htmlAttributes = new { @class = "form-control timepicker timepicker-no-seconds", autocomplete = "off", @id = "end" } })
+
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button">
+                                            <i class="fa fa-clock-o"></i>
+                                        </button>
+                                    </span>
+
+                                </div>
+                                @Html.ValidationMessageFor(model => model.estr, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group form-md-checkboxes" style="margin-right:93px;margin-left:-20px">
+                            <label for="form_control_1">ايام العطل</label>
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="checkbox2_4" name="outdays1" value="السبت" class="md-check">
+                                    <label for="checkbox2_4">
+                                        <span class="inc"></span>
+                                        <span class="check" style="transform:rotate(+220deg) !important;border-bottom:none !important; border-right:none !important"></span>
+                                        <span class="box"></span>السبت
+                                    </label>
+                                </div>
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="checkbox2_5" name="outdays2" value="الاحد" class="md-check">
+                                    <label for="checkbox2_5">
+                                        <span class="inc"></span>
+                                        <span class="check" style="transform:rotate(+220deg) !important;border-bottom:none !important; border-right:none !important"></span>
+                                        <span class="box"></span> الاحد
+                                    </label>
+                                </div>
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="checkbox2_6" name="outdays3" value="الاثنين" class="md-check">
+                                    <label for="checkbox2_6">
+                                        <span class="inc"></span>
+                                        <span class="check" style="transform:rotate(+220deg) !important;border-bottom:none !important; border-right:none !important"></span>
+                                        <span class="box"></span> الاثنين
+                                    </label>
+                                </div>
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="checkbox2_7" name="outdays4" value="الثلاثاء" class="md-check">
+                                    <label for="checkbox2_7">
+                                        <span class="inc"></span>
+                                        <span class="check" style="transform:rotate(+220deg) !important;border-bottom:none !important; border-right:none !important"></span>
+                                        <span class="box"></span> الثلاثاء
+                                    </label>
+                                </div>
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="checkbox2_8" name="outdays5" value="الاربعاء" class="md-check">
+                                    <label for="checkbox2_8">
+                                        <span class="inc"></span>
+                                        <span class="check" style="transform:rotate(+220deg) !important;border-bottom:none !important; border-right:none !important"></span>
+                                        <span class="box"></span> الاربعاء
+                                    </label>
+                                </div>
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="checkbox2_9" name="outdays6" value="الخميس" class="md-check">
+                                    <label for="checkbox2_9">
+                                        <span class="inc"></span>
+                                        <span class="check" style="transform:rotate(+220deg) !important;border-bottom:none !important; border-right:none !important"></span>
+                                        <span class="box"></span> الخميس
+                                    </label>
+                                </div>
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="checkbox2_10" name="outdays7" value="الجمعه" class="md-check">
+                                    <label for="checkbox2_10">
+                                        <span class="inc"></span>
+                                        <span class="check" style="transform:rotate(+220deg) !important;border-bottom:none !important; border-right:none !important"></span>
+                                        <span class="box"></span> الجمعه
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="myclass">
+                    <div class="myclass1">
+                        <i class="fa fa-gift"></i><span style="font-size:large">المحافظة والمنطقه والحي </span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label(" المحافظة", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.stateId, Selects.states(null), new { @class = "form-control", id = "list3" })
+                                @Html.ValidationMessageFor(model => model.stateId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.Label("المنطقه", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.RegionId, new List<SelectListItem> { }, new { @class = "form-control", id = "list4" })
+                                @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label("الحي", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.NeighborhoodId, new List<SelectListItem> { }, new { @class = "form-control", id = "list5" })
+                                @Html.ValidationMessageFor(model => model.NeighborhoodId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="myclass">
+                    <div class="myclass1">
+                        <i class="fa fa-gift"></i><span style="font-size:large">الموقع </span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            @Html.Label("خط الطول", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.longtitude, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @Value = "0" } })
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.Label("خط العرض", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.latitude, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", @Value = "0" } })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input name="ShopDalId" type="text" hidden="hidden" id="shopid" value="@ViewBag.shid"/>
+             
+
+                <div class="form-group">
+                    <div class="col-xs-offset-5 col-md-2 col-xs-9 col-sm-2">
+                        <input type="submit" value="إضافة" class="btn btn-warning" style="width:100%" />
+                    </div>
+                </div>
+            </div>
+        }
+        <div style="margin-top:5%;">
+            @{ Html.RenderAction("getAllBranchByShopDal", "Branch", new { shopId = ViewBag.shid }); }
+        </div>
+      </div>
+   
+    </div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+<script>
+  $("#list3").change(function () {
+
+
+                 $.ajax({
+                     type: 'post',
+                     url: '@Url.Action("getConvinientRegions", "BranchAndShopDal")',
+                     data: { sid: $(this).val() },
+                     success: function (data) {
+
+                         // var ddldist2 = $('#listbox').parent().children().last();
+                         var ddldist = $('#list4');
+
+                         if (data.length == 1) {
+                             //ddldist.html("");// ddldist2.html("");
+                             ddldist.empty();
+
+
+
+                         }
+                         else {
+
+
+                             ddldist.empty();
+
+                             $.each(data, function (Val, Text) {
+
+
+
+                                 ddldist.append(
+                                     $('<option></option>').val(this.Value).html(this.Text)
+                                 );
+
+                             });
+
+
+
+
+
+
+
+                         }
+                         if ((this).val() == "-1") { ddldist.empty();}
+                     }
+                 });
+             });
+</script>
+<script>
+  $("#list4").change(function () {
+
+
+                 $.ajax({
+                     type: 'post',
+                     url: '@Url.Action("getConvinientNeiberHood", "BranchAndShopDal")',
+                     data: { sid: $(this).val() },
+                     success: function (data) {
+
+                         // var ddldist2 = $('#listbox').parent().children().last();
+                         var ddldist = $('#list5');
+
+                         if (data.length == 1) {
+                             //ddldist.html("");// ddldist2.html("");
+                             ddldist.empty();
+
+
+
+                         }
+                         else {
+
+
+                             ddldist.empty();
+
+                             $.each(data, function (Val, Text) {
+
+
+
+                                 ddldist.append(
+                                     $('<option></option>').val(this.Value).html(this.Text)
+                                 );
+
+                             });
+
+
+
+
+
+
+
+                         }
+                         if ((this).val() == "-1") { ddldist.empty();}
+                     }
+                 });
+             });
+</script>

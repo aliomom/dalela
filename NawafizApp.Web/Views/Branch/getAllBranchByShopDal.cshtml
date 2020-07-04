@@ -1,0 +1,328 @@
+﻿@model IEnumerable<NawafizApp.Services.Dtos.BranchDto>
+@using NawafizApp.Web.Models
+@using NawafizApp.Common;
+@{ Layout = null;}
+<link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+<style>
+    td {
+        text-align: center !important;
+        vertical-align:middle;
+    }
+
+    th {
+        text-align: center !important;
+        background-color: #f5f3a7;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 3px;
+        line-height: 1.42857;
+        vertical-align: top;
+        border-top: 1px solid #e7ecf1;
+    }
+
+    .table td, .table th {
+        font-size: 12px;
+    }
+</style>
+@{
+    int i = 1;
+    string id = "";
+    string href = "";
+}
+
+@foreach (var s in Model)
+            {
+                id = "p" + i;
+    <div id="@id" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: 1px solid #ffffff">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">تفاصيل حول @s.branchArabicName</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+                        <div class="mayClass">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+                                        @if (!s.phone1.IsEmpty())
+                                        {
+                                            <tr>
+                                                <td class="title2">هاتف 1 </td>
+                                                <td> @s.phone1 </td>
+                                            </tr>
+                                        }
+
+                                        @if (!s.phone2.IsEmpty())
+                                        {
+                                            <tr>
+                                                <td class="title2"> هاتف 2</td>
+                                                <td>@s.phone2</td>
+
+                                            </tr>
+                                        }
+                                        @if (!s.phone3.IsEmpty())
+                                        {
+                                            <tr>
+                                                <td class="title2"> هاتف 3</td>
+                                                <td>@s.phone3</td>
+
+                                            </tr>
+                                        }
+                                        @if (!s.email1.IsEmpty())
+                                        {
+                                            <tr>
+                                                <td class="title2"> ايميل1</td>
+                                                <td>@s.email1</td>
+
+                                            </tr>
+                                        }
+                                        @if (!s.email2.IsEmpty())
+                                        {
+                                            <tr>
+                                                <td class="title2"> ايميل2</td>
+                                                <td>@s.email2</td>
+
+                                            </tr>
+                                        }
+                                        @if (!s.facebookLink.IsEmpty())
+                                        {
+                                            <tr>
+                                                <td class="title2"> رابط الفيس</td>
+                                                <td>@s.facebookLink</td>
+
+                                            </tr>
+                                        }
+                                        @if (!s.instaLink.IsEmpty())
+                                        {
+                                            <tr>
+                                                <td class="title2"> رابط الانستا</td>
+                                                <td>@s.instaLink</td>
+
+                                            </tr>
+                                        }
+                                        @if (s.longtitude != 0)
+                                        {
+                                            <tr>
+                                                <td class="title2"> احداثيات الطول </td>
+                                                <td>@s.longtitude</td>
+
+                                            </tr>
+                                        }
+                                        @if (s.latitude != 0)
+                                        {
+                                            <tr>
+                                                <td class="title2"> احداثيات العرض </td>
+                                                <td>@s.latitude</td>
+
+                                            </tr>
+                                        }
+
+  
+                                        @if (s.StartActiveTime != null)
+                                        {
+                                            <tr>
+                                                <td class="title2"> بداية الدوام</td>
+                                                <td>@DateTimeHelper.ConvertTimeToString(s.StartActiveTime, TimeFormats.HH_MM_AM)</td>
+
+                                            </tr>
+                                        }
+                                        @if (s.EndActiveTime != null)
+                                        {
+                                            <tr>
+                                                <td class="title2"> نهاية الدوام</td>
+                                                <td>@DateTimeHelper.ConvertTimeToString(s.EndActiveTime, TimeFormats.HH_MM_AM)</td>
+
+                                            </tr>
+                                        }
+                                        @if (!String.IsNullOrEmpty(s.outDays))
+                                        {
+                                            <tr>
+                                                <td class="title2"> أيام العطلة</td>
+                                                <td>@s.outDays</td>
+
+                                            </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn dark btn-outline">إغلاق</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    i++;
+    id = "";
+}
+<div class="table-responsive">
+    <table class="table table-bordered" id="mytab">
+        <thead class="t">
+            <tr>
+                <th> # </th>
+                <th> المحافظه </th>
+                <th> المنطقة </th>
+                <th> الحي </th>
+                <th> الفعالية </th>
+                <th> الاسم العربي</th>
+                <th> الاسم الانكليزي</th>
+                <th> الاسم الفرنسي</th>
+                <th> الاسم الفارسي</th>
+                <th> الاسم الروسي</th>
+                <th class="tttt" style="vertical-align:middle !important">معلومات الاتصال</th>
+                <th style="text-align:center">إدارة</th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @{ int x = 1; }
+            @foreach (var item in Model)
+            {
+                href = "#p" + x;
+                <tr>
+                    <td>
+                        @x
+                    </td>
+
+                    <td>
+                        @if (item.stateName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.stateName)
+                    </td>
+
+                    <td>
+                        @if (item.RegionName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.RegionName)
+                    </td>
+
+                    <td>
+                        @if (item.NeighborhoodName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.NeighborhoodName)
+                    </td>
+                    <td>
+                        @if (item.ShopDalName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.ShopDalName)
+                    </td>
+                    <td>
+                        @if (item.branchArabicName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.branchArabicName)
+                    </td>
+
+                    <td>
+                        @if (item.branchEnglishName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.branchEnglishName)
+                    </td>
+                    <td>
+                        @if (item.branchFrenchName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.branchFrenchName)
+                    </td>
+                    <td>
+                        @if (item.branchPersianName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.branchPersianName)
+                    </td>
+                    <td>
+                        @if (item.branchRussName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.branchRussName)
+                    </td>
+                    <td><a class="" data-toggle="modal" href="@href">عرض</a></td>
+                    <td>
+                        @Html.ActionLink("حذف", "deleteBranch", new { id = item.Id, shopId=item.ShopDalId }, new { @class = "linkDel" }) &nbsp;&nbsp;&nbsp;
+                        @Html.ActionLink("تعديل", "Edit", new { id = item.Id, shopid = item.ShopDalId })
+                    </td>
+
+                </tr>
+                x++;
+            }
+        </tbody>
+    </table>
+</div>
+<iframe id="txtArea1" style="display:none"></iframe>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-confirm.min.js"></script>
+<script>
+    $('.linkDel').confirm({
+        title: 'تأكيد الحذف !',
+
+        content: 'هل تريد بالتأكيد حذف هذا الفرع ؟',
+
+
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            },
+            إلغاء: function () {
+
+            }
+
+
+        }
+    });
+
+    $('.linlpay').confirm({
+        title: 'تأكيد العملية !',
+
+        content: 'هل تريد اتمام هذه العملية؟',
+
+
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            },
+            إلغاء: function () {
+
+            }
+
+
+        }
+    });
+    $('a.twitter').confirm({
+        content: "...",
+    });
+    $('a.twitter').confirm({
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            }
+        }
+    });
+    $(".jconfirm-content-pane").removeClass("no-scroll");
+</script>

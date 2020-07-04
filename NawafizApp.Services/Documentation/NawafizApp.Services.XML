@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NawafizApp.Services</name>
+    </assembly>
+    <members>
+        <member name="T:NawafizApp.Services.Dtos.APIOfferDtoAr">
+             <summary>
+            Offer object
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.id">
+             <summary>
+            Offer Id which can be id for an Admin offer or for Client offer
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.title">
+             <summary>
+            title of the Offer
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.photo">
+             <summary>
+            Offer photo represented in base64String || can be null
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.details">
+             <summary>
+            Offer details
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.StartDate">
+             <summary>
+            Start Date with format dd/mm/yyyy
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.endDate">
+             <summary>
+            end date  with format dd/mm/yyyy
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.Timeofpuplishing">
+             <summary>
+            Time Of Publishing with format 00:00 PM||AM
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.Dateofpuplishing">
+             <summary>
+            Date of Publishing with format dd/mm/yyyy
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.BranchId">
+             <summary>
+            id of the shop that puplished this offer >> this can be null if this offer is an Admin Offer
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIOfferDtoAr.ShopName">
+             <summary>
+            Name of the shop that puplished this offer >> this can be null if this offer is an Admin Offer
+             </summary>
+             
+        </member>
+        <member name="T:NawafizApp.Services.Dtos.APIOffersSubCategiesDtoAr">
+             <summary>
+            offers sub category object
+             </summary>
+             
+        </member>
+        <member name="T:NawafizApp.Services.Dtos.APIRegionDtoArabic">
+            <summary>
+            region arabic name and id
+            </summary>
+        </member>
+        <member name="T:NawafizApp.Services.Dtos.APIShopWithBranchesDtoAr">
+             <summary>
+            a Shop Object 
+             </summary>
+             
+        </member>
+        <member name="T:NawafizApp.Services.Dtos.APIStateDtoArabic">
+            <summary>
+            state name in arabic language and its id
+            </summary>
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIStateDtoArabic.Id">
+            <summary>
+            the id of state
+            </summary>
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIStateDtoArabic.ArabicName">
+            <summary>
+            the arabic name 
+            </summary>
+        </member>
+        <member name="T:NawafizApp.Services.Dtos.APISubCategoryDtoAr">
+             <summary>
+            subCategory Object {Arabic Language}
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APISubCategoryDtoAr.SubCatId">
+             <summary>
+            id of Sub Category
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APISubCategoryDtoAr.SubCatName">
+            <summary>
+            Name of Sub Category
+            </summary>
+            
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APISubCategoryDtoAr.SubCategoryIcon">
+             <summary>
+            Sub Category icon represented in Base64String
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APISubCategoryDtoAr.MainCategoryName">
+             <summary>
+            Name of Main Category that this SubCategory belongs to 
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APISubCategoryDtoAr.MainCatId">
+             <summary>
+            Id  of Main Category that this SubCategory belongs to 
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.LanguageDto.Id">
+            <summary>
+            Id required for edit not for insert
+            </summary>
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.LanguageDto.Code">
+            <summary>
+            Code should be 2 length only
+            </summary>
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.LanguageDto.ArabicName">
+            <summary>
+            required , Maximum 100 characters length 
+            </summary>
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.LanguageDto.EnglishName">
+            <summary>
+            required , Maximum 100 characters length 
+            </summary>
+        </member>
+        <member name="T:NawafizApp.Services.Dtos.APIMainCategoryDtoAr">
+             <summary>
+            Main category object
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIMainCategoryDtoAr.MainCatId">
+             <summary>
+            id of Main Category
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIMainCategoryDtoAr.Name">
+             <summary>
+            Arabic name 
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIMainCategoryDtoAr.icon">
+             <summary>
+            arabic icon base64String
+             </summary>
+             
+        </member>
+        <member name="P:NawafizApp.Services.Dtos.APIMainCategoryDtoAr.iconbArray">
+             <summary>
+            arabic icon byteArray
+             </summary>
+             
+        </member>
+    </members>
+</doc>

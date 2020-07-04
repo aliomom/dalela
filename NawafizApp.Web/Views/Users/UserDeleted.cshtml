@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "UserDeleted";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .dropbtn {
+        background-color: #36c6d3;
+        color: white;
+        padding: 7px 5px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none !important;
+    }
+</style>
+
+
+<div style="margin-right:235px;background-color:white;text-align:center;">
+    <h2>تم حذف المستخدم بنجاح </h2>
+    <br />
+    @Html.ActionLink("العودة الى المستخدمين", "Users", "Users", new { @class = "dropbtn" })
+</div>
+

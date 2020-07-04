@@ -1,0 +1,180 @@
+﻿@model NawafizApp.Services.Dtos.MainCategoryDalDto
+@using NawafizApp.Web.Models
+<style>
+    a {
+        text-shadow: none;
+        color: #afab14;
+    }
+
+    .searchform {
+        margin: 7px;
+    }
+
+    #form {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #dee19b;
+        margin-bottom: 5px;
+    }
+</style>
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>الفئات الرئيسية
+        </div>
+    </div>
+    <div class="portlet-body">
+       @using (Html.BeginForm("addMainCategoryDal", "MainCategoryDal", FormMethod.Post, new
+    {
+@enctype = "multipart/form-data",
+        id = "invoicePictureForm"
+    }))
+    {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("الاسم العربي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ArabicName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ArabicName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الانكليزي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.EngName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EngName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الفرنسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.FrenchName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FrenchName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الفارسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.PersianName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PersianName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الروسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.RussName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.RussName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("تسلسل الفئة الرئيسيه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.num, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.num, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+                <div class="form-group">
+                    @Html.Label(" صورة رقمية للعربيه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="btn btn-default image-preview-input" style="position:relative;margin-bottom:10px">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title">أدخل الصورة</span>
+                            <input type="file"class="file"  accept="image/png, image/jpeg, image/gif" name="file" /> <!-- rename it -->                        
+                            <span id="fup" class="error" style="display:none;color:#ed6b75;position:absolute;bottom:-19px;right:0">ادخل صوره للعربيه</span>
+                          </div>                                                                         
+                          </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label(" صورة رقمية للانكليزيه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="btn btn-default image-preview-input">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title">أدخل الصورة</span>
+                            <input type="file" accept="image/png, image/jpeg, image/gif" name="file1" id="fileEn"/> <!-- rename it -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label(" صورة رقمية للفرنسيه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="btn btn-default image-preview-input">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title">أدخل الصورة</span>
+                            <input type="file" accept="image/png, image/jpeg, image/gif" name="file2" /> <!-- rename it -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label(" صورة رقمية للفارسيه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="btn btn-default image-preview-input">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title">أدخل الصورة</span>
+                            <input type="file" accept="image/png, image/jpeg, image/gif" name="file3" /> <!-- rename it -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label(" صورة رقمية للروسيه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="btn btn-default image-preview-input">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title">أدخل الصورة</span>
+                            <input  type="file" accept="image/png, image/jpeg, image/gif" name="file4" /> <!-- rename it -->
+                        
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-md-2 col-xs-9 col-sm-2">
+                        <input type="submit" value="إضافة" class="btn btn-warning" style="width:100%"onclick="return uploadFile();" />
+                    </div>
+                </div>
+            </div>
+        }
+        @using (Ajax.BeginForm("getAllMainCategoriesDal", new AjaxOptions { UpdateTargetId = "here", InsertionMode = InsertionMode.Replace, HttpMethod = "GET", LoadingElementId = "wait" }))
+        {
+            <div id="form" class="col-lg-offset-7 col-md-offset-4">
+                الفئة الرئيسيه :
+                @Html.DropDownList("MainCategoryDal", Selects.MainCategoriesDl(null), new { id = "list3", @class = "searchform" })
+               
+
+                <input type="submit" value="بحث" class="searchform" /> <span hidden="hidden"  id="wait"><b style="font-size:small">جاري المعالجة...</b> <img style="" src="~/Images/loader.gif"  width="20" height="20" /></span>
+                
+            </div>
+        }
+        <div id="here">         
+            @{ Html.RenderAction("getAllMainCategoriesDal"); }
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".file").change(function () {
+            uploadFile();
+        });
+    });
+    function uploadFile() {
+        var filename = $('.file').val();
+        if (filename == '') {
+            $("#fup").show();
+        }
+        else {
+            $("#fup").hide();
+        }
+    }
+</script>
+

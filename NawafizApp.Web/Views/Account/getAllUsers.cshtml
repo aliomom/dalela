@@ -1,0 +1,339 @@
+﻿@model IEnumerable<NawafizApp.Services.Dtos.RegisterUserDto>
+@using NawafizApp.Web.Models
+@using NawafizApp.Common;
+@{
+   // Layout = null;
+}
+<link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+<style>
+    .a {
+    }
+
+    .btn.green:not(.btn-outline):hover {
+        background-color: #9c6d16;
+        border-color: #d8d45c;
+    }
+
+    .btn.green:not(.btn-outline) {
+        color: #FFF;
+        background-color: #9c6d16;
+        border-color: #d8d45c;
+    }
+
+    td {
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+
+    .tttt {
+        text-align: center !important;
+        background-color: #f5f3a7;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 3px;
+        line-height: 1.42857;
+        vertical-align: top;
+        border-top: 1px solid #e7ecf1;
+    }
+
+    .table td, .table th {
+        font-size: 12px;
+    }
+
+    .title2 {
+        font-size: 14px !important;
+        color: #707127;
+    }
+
+    .searchForm {
+        margin-bottom: 4% !important;
+    }
+
+    .exel {
+        display: none;
+    }
+
+    .payed {
+        background-color: rgba(53, 190, 37, 0.61);
+    }
+
+    .notpayed {
+        background-color: rgba(224, 47, 47, 0.74);
+    }
+</style>
+@{
+    int i = 1;
+    string id = "";
+    string href = "";
+}
+
+@foreach (var s in Model)
+            {
+                id = "p" + i;
+    <div id="@id" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">تفاصيل الاشتراك</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+                        <div class="mayClass">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+
+                                      
+                                            <tr>
+                                                <td class="title2">إضافة عروض</td>
+
+                                                <td> @s.AddOffersGET </td>
+                                            </tr>
+                                        
+                                        <tr>
+                                            <td class="title2">إضافة فروع</td>
+                                            <td> @s.AddbranchesGET </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title2">عدد الفروع</td>
+                                            <td> @s.numOfBranches </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title2">عدد الصور للفرع</td>
+                                            <td> @s.NumberOfImagesAddedToranches </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title2">عدد الصور</td>
+                                            <td> @s.Numberofpictures </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title2"> إشعارات مخصصة</td>
+                                            <td> @s.AddCustomeNotificationsGEt </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title2">إشعارات عامة</td>
+                                            <td> @s.AddnotificationsGET </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn dark btn-outline">إغلاق</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    i++;
+    id = "";
+}
+
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i> المستخدمين
+        </div>
+
+    </div>
+    <div class="portlet-body">
+        <div class="searchForm">
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+
+                    
+                      
+                        <div class="row">
+                            <div class="form-group">
+                                @Html.Label("اسم المستخدم", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-6">
+                                    <div class="input-group select2-bootstrap-prepend" style="width:auto">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" data-select2-open="single-prepend-text">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+
+                                        <select id="single-prepend-text" name="userid" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                            <option></option>
+                                            @foreach (var item in NawafizApp.Web.Models.Selects.users(null))
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        </select>
+
+                                        @*@Html.ValidationMessageFor(m => m.ShopId, "", new { @class = "text-danger" })*@
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-9">
+                                        <button type="submit" class="btn green">بحث</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="mytab">
+                <thead class="t">
+                    <tr>
+                        <th class="tttt"> # </th>
+                        <th class="tttt"> الاسم </th>
+                        <th class="tttt"> اسم المستخدم</th>
+                        <th class="tttt"> الفعالية </th>
+                       
+                     
+                        <th class="tttt" style="vertical-align:middle !important">الاشتراك</th>
+                        <th class="tttt" style="width: 8% !important;vertical-align:middle">ادارة</th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        i = 1;
+                    }
+                    @foreach (var x in Model)
+                    {
+
+                        href = "#p" + i;
+                        <tr>
+                            <td>@i</td>
+                            <td>@x.FullName</td>
+                            <td>@x.username</td>
+                            <td>@x.ShopName</td>
+                            <td><a class="" data-toggle="modal" href="@href">@x.Role</a></td>
+                          
+
+                            @* @if (x.paymentStatus)
+                                {
+                                    <td class="payed"> تم <a class="linlpay" href="@Url.Action("payToggle",new { id = x.Id })"><i class="fa fa-remove"></i> إلغاء </a></td>
+                                }
+                                @if (!x.paymentStatus)
+                                {
+                                    <td class="notpayed">لم يتم <a class="linlpay" href="@Url.Action("payToggle",new { id = x.Id })"><i class="fa fa-check"></i>إدفع </a></td>
+                                }*@
+                            <td>
+
+
+
+                                @Html.ActionLink("تعديل", "Edit", new { id = x.UserId })
+                            </td>
+                         
+                        </tr>
+                        i++;
+                        href = "";
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-warning" type="button" onclick="fnExcelReport();">تصدير <i class="fa fa-download"></i></button>
+    </div>
+</div>
+<iframe id="txtArea1" style="display:none"></iframe>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-confirm.min.js"></script>
+<script>
+    $('.linkDel').confirm({
+        title: 'تأكيد الحذف !',
+
+        content: 'هل تريد بالتأكيد حذف هذه الفعالية ؟',
+
+
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            },
+            إلغاء: function () {
+
+            }
+
+
+        }
+    });
+
+    $('.linlpay').confirm({
+        title: 'تأكيد العملية !',
+
+        content: 'هل تريد اتمام هذه العملية؟',
+
+
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            },
+            إلغاء: function () {
+
+            }
+
+
+        }
+    });
+    $('a.twitter').confirm({
+        content: "...",
+    });
+    $('a.twitter').confirm({
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            }
+        }
+    });
+    $(".jconfirm-content-pane").removeClass("no-scroll");
+</script>
+<script>
+    function fnExcelReport() {
+        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j = 0;
+        tab = document.getElementById('mytab'); // id of table
+
+        for (j = 0 ; j < tab.rows.length ; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<a[^>]*>|<\/a>/g, "");//remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+        tab_text = tab_text.replace(/<th[^>]*>ادارة|<\/th>/gi, "");
+        tab_text = tab_text.replace(/<td[^>]*>|<\/td>/gi, "");
+
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+        return (sa);
+    }
+</script>

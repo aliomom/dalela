@@ -1,0 +1,353 @@
+﻿@model NawafizApp.Services.Dtos.RegisterUserDto
+@{
+    ViewBag.Title = "Register";
+}
+
+<style>
+    #details{
+        width:500px;
+        margin-right:30px;
+    }
+   #aad {
+    background-color: #222;
+}
+       .md-checkbox input[type=checkbox]:checked~label>.check {
+    opacity: 1;
+    -webkit-transform: scale(1) rotate(-45deg) !important;
+    -moz-transform: scale(1) rotate(-45deg) !important;
+    transform: scale(1) rotate(220deg) !important;
+}
+ .md-checkbox label>.check {
+    top: -4px;
+    right: 6px;
+    width: 10px;
+    height: 20px;
+    border: 2px solid #36c6d3;
+    border-bottom: none;
+    border-right: none;
+    opacity: 0;
+    z-index: 5;
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -webkit-transition-delay: .3s;
+    -moz-transition-delay: .3s;
+    transition-delay: .3s;
+}
+ .form-md-checkboxes>label {
+    font-size: 14px;
+    color: #1f1f1f;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+</style>
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>اضافة مشترك
+        </div>
+    </div>
+    <div class="portlet-body">
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+     
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("اسم المستخدم", new { @class = "col-md-2 control-label" })
+
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("الاسم الكامل", new { @class = "col-md-2 control-label" })
+
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("كلمة المرور", new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("تأكيد كلمة المرور", new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.PasswordFor(m => m.CPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("الفعالية", new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                <div class="input-group select2-bootstrap-prepend" style="width:auto">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-select2-open="single-prepend-text">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                    
+                    <select id="single-prepend-text" name="ShopId" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" required="true">
+                        <option></option>
+                        @foreach (var item in NawafizApp.Web.Models.Selects.shopdalidsUsers(null))
+                    {
+                            <option value="@item.Value">@item.Text</option>
+                    }
+                    </select>
+
+                    @*@Html.ValidationMessageFor(m => m.ShopId, "", new { @class = "text-danger" })*@
+
+                </div>
+              
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("الاشتراك", new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(m => m.Role, NawafizApp.Web.Models.Selects.Roles(null), new { id="role", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="md-checkbox has-warning">
+                @Html.EditorFor(model => model.Customize, new { htmlAttributes = new { id = "checkbox30", @type = "checkbox", @class = "md-check form-control" } })
+
+                <label for="checkbox30" class="control-label col-md-2">
+                    <span class="inc col-xs-offset-12"></span>
+                    <span class="check col-xs-offset-12"></span>
+                    <span class="box col-xs-offset-12"></span> تخصيص الاشتراك
+                </label>
+
+               
+
+            </div>
+        </div>
+        <div id="m1" hidden="hidden" class="form-group">
+            
+            <div class="md-checkbox has-warning">
+                @Html.EditorFor(model => model.AddOffers, new { htmlAttributes = new { id = "checkbox32", @type = "checkbox", @class = "md-check form-control" } })
+
+                <label for="checkbox32" class="control-label col-md-2">
+                    <span class="inc col-xs-offset-12"></span>
+                    <span class="check col-xs-offset-12"></span>
+                    <span class="box col-xs-offset-12"></span> امكانية اضافة عروض
+                </label>
+
+
+
+            </div>
+        </div>
+        <div id="m2" hidden="hidden" class="form-group">
+
+            <div class="md-checkbox has-warning">
+                @Html.EditorFor(model => model.Addbranches, new { htmlAttributes = new { id = "checkbox35", @type = "checkbox", @class = "md-check form-control" } })
+
+                <label for="checkbox35" class="control-label col-md-2">
+                    <span class="inc col-xs-offset-12"></span>
+                    <span class="check col-xs-offset-12"></span>
+                    <span class="box col-xs-offset-12"></span> امكانية اضافة أفرع
+                </label>
+
+
+
+            </div>
+        </div>
+        <div id="m3" hidden="hidden" class="form-group">
+            @Html.Label("عدد الأفرع", new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.numOfBranches, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.numOfBranches)
+            </div>
+        </div>
+        <div id="m4" hidden="hidden" class="form-group">
+            @Html.Label("عدد صور الأفرع", new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.NumberOfImagesAddedToranches, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.NumberOfImagesAddedToranches)
+            </div>
+        </div>
+        <div id="m5" hidden="hidden" class="form-group">
+
+            <div class="md-checkbox has-warning">
+                @Html.EditorFor(model => model.AddCustomeNotifications, new { htmlAttributes = new { id = "checkbox34", @type = "checkbox", @class = "md-check form-control" } })
+
+                <label for="checkbox34" class="control-label col-md-2">
+                    <span class="inc col-xs-offset-12"></span>
+                    <span class="check col-xs-offset-12"></span>
+                    <span class="box col-xs-offset-12"></span> امكانية اضافة إشعارات مخصصة
+                </label>
+
+
+
+            </div>
+        </div>
+        <div id="m6" hidden="hidden" class="form-group">
+
+            <div class="md-checkbox has-warning">
+                @Html.EditorFor(model => model.Addnotifications, new { htmlAttributes = new { id = "checkbox33", @type = "checkbox", @class = "md-check form-control" } })
+
+                <label for="checkbox33" class="control-label col-md-2">
+                    <span class="inc col-xs-offset-12"></span>
+                    <span class="check col-xs-offset-12"></span>
+                    <span class="box col-xs-offset-12"></span> امكانية اضافة إشعارات
+                </label>
+
+
+
+            </div>
+        </div>
+
+        <div id="m7" hidden="hidden" class="form-group">
+            @Html.Label("عدد صور المعرض", new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.Numberofpictures, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Numberofpictures)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-warning" value="إضافة مستخدم" />
+            </div>
+        </div>
+    }
+        <div id="details" class="portlet box yellow">
+             <div id="aad" class="portlet-title">
+                <div class="caption">
+                   <span id="spn"></span> معلومات الاشتراك
+                </div>
+             </div>
+        <div class="portlet-body">
+            <table class="table">
+                <tr>
+                    <td>إمكانية إضافة عروض</td>
+                    <td id="n1"></td>
+                </tr>
+                <tr>
+                    <td>إمكانية إضافة فروع</td>
+                    <td id="n2"></td>
+                </tr>
+                <tr>
+                    <td> عدد الفروع</td>
+                    <td id="n3"></td>
+                </tr>
+                <tr>
+                    <td> عدد الصور للفرع</td>
+                    <td id="n4"></td>
+                </tr>
+                <tr>
+                    <td> عدد الصور للمعرض</td>
+                    <td id="n5"></td>
+                </tr>
+                <tr>
+                    <td>  إضافة اشعارات مخصصة</td>
+                    <td id="n6"></td>
+                </tr>
+                <tr>
+                    <td>  إضافة اشعارات عامة</td>
+                    <td id="n7"></td>
+                </tr>
+            </table>
+
+        </div>
+</div>
+        </div>
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script >
+    
+    $("#role").change(function () {
+        var x = $("#role").val();
+        if (x == 'normal') {
+            document.getElementById("spn").innerText = "(عادي)";
+            document.getElementById("n1").innerText = "لا";
+            document.getElementById("n2").innerText = "لا";
+            document.getElementById("n3").innerText = "-";
+            document.getElementById("n4").innerText = "-";
+            document.getElementById("n5").innerText = "1";
+            document.getElementById("n6").innerText = "لا";
+            document.getElementById("n7").innerText = "لا";
+        }
+        if (x == 'silver') {
+            document.getElementById("spn").innerText = "(فضي)";
+            document.getElementById("n1").innerText = "لا";
+            document.getElementById("n2").innerText = "لا";
+            document.getElementById("n3").innerText = "-";
+            document.getElementById("n4").innerText = "-";
+            document.getElementById("n5").innerText = "3";
+            document.getElementById("n6").innerText = "لا";
+            document.getElementById("n7").innerText = "لا";
+        }
+        if (x == 'gold') {
+            document.getElementById("spn").innerText = "(ذهبي)";
+            document.getElementById("n1").innerText = "نعم";
+            document.getElementById("n2").innerText = "لا";
+            document.getElementById("n3").innerText = "-";
+            document.getElementById("n4").innerText = "-";
+            document.getElementById("n5").innerText = "5";
+            document.getElementById("n6").innerText = "لا";
+            document.getElementById("n7").innerText = "لا";
+        }
+        if (x == 'blatin') {
+            document.getElementById("spn").innerText = "(بلاتيني)";
+            document.getElementById("n1").innerText = "نعم";
+            document.getElementById("n2").innerText = "لا";
+            document.getElementById("n3").innerText = "-";
+            document.getElementById("n4").innerText = "-";
+            document.getElementById("n5").innerText = "10";
+            document.getElementById("n6").innerText = "نعم";
+            document.getElementById("n7").innerText = "لا";
+        }
+        if (x == 'diamond') {
+            document.getElementById("spn").innerText = "(الماسي)";
+            document.getElementById("n1").innerText = "نعم";
+            document.getElementById("n2").innerText = "لا";
+            document.getElementById("n3").innerText = "-";
+            document.getElementById("n4").innerText = "-";
+            document.getElementById("n5").innerText = "7";
+            document.getElementById("n6").innerText = "لا";
+            document.getElementById("n7").innerText = "لا";
+        }
+        if (x == 'super') {
+            document.getElementById("spn").innerText = "(سوبر)";
+            document.getElementById("n1").innerText = "نعم";
+            document.getElementById("n2").innerText = "نعم";
+            document.getElementById("n3").innerText = "7";
+            document.getElementById("n4").innerText = "1";
+            document.getElementById("n5").innerText = "25";
+            document.getElementById("n6").innerText = "نعم";
+            document.getElementById("n7").innerText = "نعم";
+        }
+        if (x == 'vip') {
+            document.getElementById("spn").innerText = "(VIP)";
+            document.getElementById("n1").innerText = "نعم";
+            document.getElementById("n2").innerText = "نعم";
+            document.getElementById("n3").innerText = "30";
+            document.getElementById("n4").innerText = "3";
+            document.getElementById("n5").innerText = "50";
+            document.getElementById("n6").innerText = "نعم";
+            document.getElementById("n7").innerText = "نعم";
+        }
+    })
+    $("#checkbox30").change(function () {
+        $("#m1").slideToggle();
+        $("#m2").slideToggle();
+        $("#m3").slideToggle();
+        $("#m4").slideToggle();
+        $("#m5").slideToggle();
+        $("#m6").slideToggle();
+        $("#m7").slideToggle();
+     
+    }
+
+    );
+</script>

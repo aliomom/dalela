@@ -1,0 +1,130 @@
+﻿@model IEnumerable<NawafizApp.Services.Dtos.FollowerDto>
+
+@{ Layout = null;}
+<link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+<style>
+    td {
+        text-align: center !important;
+        vertical-align: central;
+    }
+
+    th {
+        text-align: center !important;
+        background-color: #f5f3a7;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 3px;
+        line-height: 1.42857;
+        vertical-align: top;
+        border-top: 1px solid #e7ecf1;
+    }
+
+    .table td, .table th {
+        font-size: 12px;
+    }
+</style>
+
+@{
+    int i = 1;
+    string id = "";
+    string href = "";
+}
+
+@foreach (var s in Model)
+            {
+                id = "p" + i;
+    <div id="@id" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">الفئات الفرعيه </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+                        <div class="mayClass">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>  </tbody>
+
+                                    <td style="border-top: 5px solid #ffffff !important">
+                                        @if (s.shopdalids != null)
+                                        {
+                                            int m = 1;
+                                            foreach (var y in s.shopdalnames)
+                                            {
+                                                <b style="vertical-align:central;text-align:center;font-size:x-large">@m- @y <br /></b>
+                                                m++;
+                                            }
+
+                                        }
+
+
+                                    </td>
+
+                                  
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn dark btn-outline">إغلاق</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    i++;
+    id = "";
+}
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> تسلسل </th>
+                <th> اسم المستخدم</th>              
+                <th class="tttt" style="vertical-align:middle !important">الفعاليات المتابعه</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{ int x = 1; }
+            @foreach (var item in Model)
+            {
+                href = "#p" + x;
+                <tr>
+                    <td>
+                        @x
+                    </td>
+
+                    <td>
+                        @if (item.userName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.userName)
+                    </td>
+
+                   
+
+                    
+
+                    
+
+                   
+                    <td><a class="" data-toggle="modal" href="@href">عرض</a></td>
+                   
+
+                </tr>
+                x++;
+                href = "";
+            }
+        </tbody>
+    </table>
+</div>
+

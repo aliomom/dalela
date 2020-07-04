@@ -1,0 +1,111 @@
+﻿@model NawafizApp.Services.Dtos.SubCategetoryOffersDto
+
+@using NawafizApp.Web.Models
+<style>
+    a {
+        text-shadow: none;
+        color: #afab14;
+    }
+
+    .searchform {
+        margin: 7px;
+    }
+
+    #form {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #dee19b;
+        margin-bottom: 5px;
+    }
+</style>
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>الفئات الفرعية
+        </div>
+    </div>
+    <div class="portlet-body">
+       @using (Html.BeginForm())
+       {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("الفئة الرئيسية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.MainCategoryOffersId, Selects.MainCategoriesOffer(null), new { @class = "form-control", id = "list1" })
+                        @Html.ValidationMessageFor(model => model.MainCategoryOffersId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("التسلسل", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.num, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.num, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم العربي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ArabicName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ArabicName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الانكليزي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.EngName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EngName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الفرنسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.FrenchName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FrenchName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الفارسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.PersianName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PersianName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الروسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.RussName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.RussName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+              
+                
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-md-2 col-xs-9 col-sm-2">
+                        <input type="submit" value="إضافة" class="btn btn-warning" style="width:100%" />
+                    </div>
+                </div>
+            </div>
+        }
+        @using (Ajax.BeginForm("getAllSubCategoryOffer", new AjaxOptions { UpdateTargetId = "here", InsertionMode = InsertionMode.Replace, HttpMethod = "GET", LoadingElementId = "wait" }))
+        {
+            <div id="form" class="col-lg-offset-7 col-md-offset-4">
+                الفئة الرئيسيه :
+                @Html.DropDownList("MainCategoryDal", Selects.MainCategoriesOffer(null), new { id = "list3", @class = "searchform" })
+
+
+                <input type="submit" value="بحث" class="searchform" /> <span hidden="hidden" id="wait"><b style="font-size:small">جاري المعالجة...</b> <img style="width:10%;height:10%" src="~/Images/loader.gif" /></span>
+
+            </div>
+        }
+        <div id="here" style="margin-top:5%;">
+            @{ Html.RenderAction("getAllSubCategoryOffer"); }
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

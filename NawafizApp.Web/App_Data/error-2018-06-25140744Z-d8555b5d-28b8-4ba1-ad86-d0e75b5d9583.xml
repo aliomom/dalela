@@ -1,0 +1,168 @@
+﻿<error errorId="d8555b5d-28b8-4ba1-ad86-d0e75b5d9583" application="/LM/W3SVC/3/ROOT" host="MOHAMMAD" type="System.Web.HttpException" message="The controller for path '/Main/map' was not found or does not implement IController." source="System.Web.Mvc" detail="System.Web.HttpException (0x80004005): The controller for path '/Main/map' was not found or does not implement IController.&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="azeez" time="2018-06-25T14:07:44.9975256Z" statusCode="404">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-GB,en-US;q=0.9,en;q=0.8&#xD;&#xA;HTTP_COOKIE:__RequestVerificationToken=-9ClYYswINcSoG_nglhCP3wcpxnWqlDxZMZI7E_ONVV8xUZmMU7uJRVGjmxf24o7-FVJnZ1notHG9QAKbltVVTJNKCMLoq-MqhZIYIgvjL01; .AspNet.ApplicationCookie=8CEF5D5OSQtbBFRYbgukWyP-MA-I8RG0MTd9jYjNmPO3zWnju4rb1UfoCWK_7wb6ReLCBiAWPQw0-xzbbkqx_alyaY6LvbMNy7xwKl7Zu1qv74zxVuTY6uiGrRbVTiC6MN1M2LRd7o4_3DG9WhKZ_htx1AW-ko1nhm77nBfXLYRFI7w7aYjFc6LyNDedU_PcvjwhC6ZlXKMPaft16kj0o6XqPy_g53noR0bH3Sxx20Fvs6CiEUTgwc29mpBjnSygoAf30qPE0bAtb6LLMJ3xUmTZgdXKPeCDUo51TlhETnP_WPQX3G1rMfoh8aG5nq5JdSaXsF0TY7hb6TFyQnfIPa99c6W9mODoMiiklGp6ndJgQf_M-hJ7mhYulDMaR8a09GRTa3n-fZ5cP0v3FKtEkNHYBjFYWgXrH2LLwGmCVjAG8TpDoxC2tJqf9cwiWIvBb1IHNUzXdFne8lxdMV1lXR9LQiZDbL2xpFcy_N9SqxxNfmBd7oERzsQXfmDv96C1&#xD;&#xA;HTTP_HOST:localhost:50001&#xD;&#xA;HTTP_REFERER:http://localhost:50001/Breake/AddBreak?bid=21&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, br&#xD;&#xA;Accept-Language: en-GB,en-US;q=0.9,en;q=0.8&#xD;&#xA;Cookie: __RequestVerificationToken=-9ClYYswINcSoG_nglhCP3wcpxnWqlDxZMZI7E_ONVV8xUZmMU7uJRVGjmxf24o7-FVJnZ1notHG9QAKbltVVTJNKCMLoq-MqhZIYIgvjL01; .AspNet.ApplicationCookie=8CEF5D5OSQtbBFRYbgukWyP-MA-I8RG0MTd9jYjNmPO3zWnju4rb1UfoCWK_7wb6ReLCBiAWPQw0-xzbbkqx_alyaY6LvbMNy7xwKl7Zu1qv74zxVuTY6uiGrRbVTiC6MN1M2LRd7o4_3DG9WhKZ_htx1AW-ko1nhm77nBfXLYRFI7w7aYjFc6LyNDedU_PcvjwhC6ZlXKMPaft16kj0o6XqPy_g53noR0bH3Sxx20Fvs6CiEUTgwc29mpBjnSygoAf30qPE0bAtb6LLMJ3xUmTZgdXKPeCDUo51TlhETnP_WPQX3G1rMfoh8aG5nq5JdSaXsF0TY7hb6TFyQnfIPa99c6W9mODoMiiklGp6ndJgQf_M-hJ7mhYulDMaR8a09GRTa3n-fZ5cP0v3FKtEkNHYBjFYWgXrH2LLwGmCVjAG8TpDoxC2tJqf9cwiWIvBb1IHNUzXdFne8lxdMV1lXR9LQiZDbL2xpFcy_N9SqxxNfmBd7oERzsQXfmDv96C1&#xD;&#xA;Host: localhost:50001&#xD;&#xA;Referer: http://localhost:50001/Breake/AddBreak?bid=21&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/3/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\Users\mohamed\Desktop\dalila\NawafizApp.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="azeez" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="azeez" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="azeez" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="3" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/3" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Main/map" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\Users\mohamed\Desktop\dalila\NawafizApp.Web\Main\map" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="41809" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Main/map" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="50001" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/Main/map" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-GB,en-US;q=0.9,en;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="__RequestVerificationToken=-9ClYYswINcSoG_nglhCP3wcpxnWqlDxZMZI7E_ONVV8xUZmMU7uJRVGjmxf24o7-FVJnZ1notHG9QAKbltVVTJNKCMLoq-MqhZIYIgvjL01; .AspNet.ApplicationCookie=8CEF5D5OSQtbBFRYbgukWyP-MA-I8RG0MTd9jYjNmPO3zWnju4rb1UfoCWK_7wb6ReLCBiAWPQw0-xzbbkqx_alyaY6LvbMNy7xwKl7Zu1qv74zxVuTY6uiGrRbVTiC6MN1M2LRd7o4_3DG9WhKZ_htx1AW-ko1nhm77nBfXLYRFI7w7aYjFc6LyNDedU_PcvjwhC6ZlXKMPaft16kj0o6XqPy_g53noR0bH3Sxx20Fvs6CiEUTgwc29mpBjnSygoAf30qPE0bAtb6LLMJ3xUmTZgdXKPeCDUo51TlhETnP_WPQX3G1rMfoh8aG5nq5JdSaXsF0TY7hb6TFyQnfIPa99c6W9mODoMiiklGp6ndJgQf_M-hJ7mhYulDMaR8a09GRTa3n-fZ5cP0v3FKtEkNHYBjFYWgXrH2LLwGmCVjAG8TpDoxC2tJqf9cwiWIvBb1IHNUzXdFne8lxdMV1lXR9LQiZDbL2xpFcy_N9SqxxNfmBd7oERzsQXfmDv96C1" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:50001" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:50001/Breake/AddBreak?bid=21" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="__RequestVerificationToken">
+      <value string="-9ClYYswINcSoG_nglhCP3wcpxnWqlDxZMZI7E_ONVV8xUZmMU7uJRVGjmxf24o7-FVJnZ1notHG9QAKbltVVTJNKCMLoq-MqhZIYIgvjL01" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="8CEF5D5OSQtbBFRYbgukWyP-MA-I8RG0MTd9jYjNmPO3zWnju4rb1UfoCWK_7wb6ReLCBiAWPQw0-xzbbkqx_alyaY6LvbMNy7xwKl7Zu1qv74zxVuTY6uiGrRbVTiC6MN1M2LRd7o4_3DG9WhKZ_htx1AW-ko1nhm77nBfXLYRFI7w7aYjFc6LyNDedU_PcvjwhC6ZlXKMPaft16kj0o6XqPy_g53noR0bH3Sxx20Fvs6CiEUTgwc29mpBjnSygoAf30qPE0bAtb6LLMJ3xUmTZgdXKPeCDUo51TlhETnP_WPQX3G1rMfoh8aG5nq5JdSaXsF0TY7hb6TFyQnfIPa99c6W9mODoMiiklGp6ndJgQf_M-hJ7mhYulDMaR8a09GRTa3n-fZ5cP0v3FKtEkNHYBjFYWgXrH2LLwGmCVjAG8TpDoxC2tJqf9cwiWIvBb1IHNUzXdFne8lxdMV1lXR9LQiZDbL2xpFcy_N9SqxxNfmBd7oERzsQXfmDv96C1" />
+    </item>
+  </cookies>
+</error>

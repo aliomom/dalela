@@ -1,0 +1,76 @@
+﻿@model NawafizApp.Services.Dtos.NotificationDto
+
+@using NawafizApp.Web.Models;
+
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>الاشعارات
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Ajax.BeginForm("getAllUsersNotification", "App", new AjaxOptions { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace, HttpMethod = "get", LoadingElementId = "wait", LoadingElementDuration = 9000 }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        @Html.Label("عنوان الاشعار", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(model => model.title, Selects.titlesfornotification(null), new { @class = "form-control", id = "list1" })
+                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                 
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4"> من تاريخ </label>
+                        <div class="col-md-8">
+                            <div style="position:relative;margin-bottom:10px">
+                                <input name="start" id="dd" class="form-control date-picker" data-date-format="dd/mm/yyyy" type="text" value="" autocomplete="off">
+                            
+                               
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4"> الى تاريخ</label>
+                        <div class="col-md-8">
+                            <div style="position:relative;margin-bottom:10px">
+                                <input name="end" id="ddd" class="form-control date-picker" data-date-format="dd/mm/yyyy" type="text" value="" autocomplete="off">
+                              
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+               
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="بحث" class="btn btn-lg btn-circle" style="background-color:#222222;color:white" />
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="wait" hidden="hidden">
+            <i><b>جاري البحث</b></i>   <img src="~/Images/loader.gif" width="35" height="35" />
+
+
+        </div>
+        <br />
+        <br />
+        <div id="table">
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

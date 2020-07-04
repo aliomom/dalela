@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNet.Identity
+<style>
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-menu > li > a:hover {
+        background-color: white !important;
+    }
+</style>
+@if (Request.IsAuthenticated)
+{
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+       
+        <div class="top-menu">
+            @Html.AntiForgeryToken()
+
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown dropdown-user">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <!-- <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar.png" />-->
+                        <span class="username username-hide-on-mobile"> حسابي </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li class="dropUser">
+                            <a href="@Url.Action("ChangePassword","Account")">
+                                <i class="icon-user xxxx"></i> تغيير كلمة المرور
+                            </a>
+                        </li>
+                        <li id="ttt" class="dropUser"><a href="javascript:document.getElementById('logoutForm').submit()" style="width:auto;"><i class="icon-key xxxx"></i>تسجيل الخروج</a></li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+        </div>
+    }
+}
+
+else
+{
+    <div class="">
+
+        <ul class="nav navbar-nav pull-right">
+
+            <li id="ttt" style=""> @Html.ActionLink("تسجيل الدخول", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "", style = "width:auto;color:white;" })</li>
+        </ul>
+    </div>
+}

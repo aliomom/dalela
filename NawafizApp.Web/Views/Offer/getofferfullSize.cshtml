@@ -1,0 +1,92 @@
+﻿@model NawafizApp.Services.Dtos.OfferDto
+<style>
+    b {
+    vertical-align:middle !important;
+    text-align:center !important;
+    }
+</style>
+<div class="portlet light">
+    <div class="portlet-title">
+        <h3>
+            <b>
+                ايقونات العرض:@Model.Atitle
+            </b>
+        </h3>
+    </div>
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه1   
+            </b>
+        </h3>
+    </div>
+    @if (Model.photo != null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.photo, 0, Model.photo.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+    else
+    {<br />
+    <b>لا يوجد</b>
+    }
+    <br />
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه2
+            </b>
+        </h3>
+    </div>
+    @if (Model.photo1 != null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.photo1, 0, Model.photo1.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+    else
+    {<br />
+    <b>لا يوجد</b>
+    }
+    <br />
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه3
+            </b>
+        </h3>
+    </div>
+    @if (Model.photo2 != null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.photo2, 0, Model.photo2.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+    else
+    {<br />
+    <b>لا يوجد</b>
+    }
+    <br />
+    <div class="portlet-title">
+        <h3>
+            <b>
+                الايقونه4
+            </b>
+        </h3>
+    </div>
+    @if (Model.photo3 != null)
+    {
+        <div class="portlet-body">
+            <br />
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.photo3, 0, Model.photo3.Length)" style="border:3px solid #808080;position:relative;width:100%;height:500px" />
+        </div>
+    }
+    else
+    {<br />
+    <b>لا يوجد</b>
+    }
+    <br />
+</div>

@@ -1,0 +1,214 @@
+﻿@model IEnumerable<NawafizApp.Services.Dtos.SubCategoryDalDto>
+
+@{ Layout = null;}
+
+<link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+<style>
+    td {
+        text-align: center !important;
+        vertical-align:middle !important;
+    }
+
+    th {
+        text-align: center !important;
+        background-color: #f5f3a7;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 3px;
+        line-height: 1.42857;
+        vertical-align: top;
+        border-top: 1px solid #e7ecf1;
+    }
+
+    .table td, .table th {
+        font-size: 12px;
+
+    }
+    img {
+    width:auto !important;
+    }
+</style>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> تسلسل </th>
+                <th> الفئة الرئيسيه</th>
+                <th> الاسم بالعربي</th>
+                <th> الاسم بالانكليزي</th>
+                <th> الاسم بالفرنسي</th>
+                <th> الاسم بالفارسي</th>
+                <th> الاسم بالروسي</th>
+              
+                <th>إدارة</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>                      
+                        @i
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.MainCategoryDalName)
+                    </td>
+                    <td>
+                        @if (item.ArabicName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+                        }                        
+                        @Html.DisplayFor(modelItem => item.ArabicName)<br />
+                        @if (item.icon.Length != 0)
+                        {
+
+
+                            <a target="_blank" href="@Url.Action("getSubCategoryDalfullSize", new { id = item.Id })">
+
+                                <img src="data:image/png;base64,@Convert.ToBase64String(@item.icon, 0, @item.icon.Length)" style="border:3px solid white;position:relative" width="65" height="50" />
+
+                            </a>
+                        }
+                        else
+                        {
+                            <b>لا يوجد ايقونة</b>
+                        }
+                    </td>
+
+                    <td>
+                        @if (item.EngName.IsEmpty())
+                        {                          
+                            <b>لا يوجد</b>
+                        }                     
+                        @Html.DisplayFor(modelItem => item.EngName)<br />
+                        @if (item.iconEn.Length != 0)
+                        {
+                            <a target="_blank" href="@Url.Action("getSubCategoryDalfullSize", new { id = item.Id })">
+
+                                <img src="data:image/png;base64,@Convert.ToBase64String(@item.iconEn, 0, @item.iconEn.Length)" style="border:3px solid white;position:relative" width="65" height="50" />
+
+                            </a>
+                        }
+                        else
+                        {
+                            <b>لا يوجد ايقونة</b>
+                        }
+                    </td>
+                    <td>
+                        @if (item.FrenchName.IsEmpty())
+                        {
+                          
+                            <b>لا يوجد</b>
+                        }
+
+                        @Html.DisplayFor(modelItem => item.FrenchName)<br />
+                        @if (item.iconFr.Length != 0)
+                        {
+
+
+                            <a target="_blank" href="@Url.Action("getSubCategoryDalfullSize", new { id = item.Id })">
+
+                                <img src="data:image/png;base64,@Convert.ToBase64String(@item.iconFr, 0, @item.iconFr.Length)" style="border:3px solid white;position:relative" width="65" height="50" />
+
+                            </a>
+                        }
+                        else
+                        {
+                            <b>لا يوجد ايقونة</b>
+                        }
+                    </td>
+                    <td>
+                        @if (item.PersianName.IsEmpty())
+                        {                        
+                            <b>لا يوجد</b>
+                        }
+                        @Html.DisplayFor(modelItem => item.PersianName)<br />
+                        @if (item.iconPersian.Length != 0)
+                        {
+
+
+                            <a target="_blank" href="@Url.Action("getSubCategoryDalfullSize", new { id = item.Id })">
+
+                                <img src="data:image/png;base64,@Convert.ToBase64String(@item.iconPersian, 0, @item.iconPersian.Length)" style="border:3px solid white;position:relative" width="65" height="50" />
+
+                            </a>
+                        }
+                        else
+                        {
+                            <b>لا يوجد ايقونة</b>
+                        }
+                    </td>
+                    <td>
+                        @if (item.RussName.IsEmpty())
+                        {
+                            <b>لا يوجد</b>
+
+                        }
+                        @Html.DisplayFor(modelItem => item.RussName)<br />
+                        @if (item.iconRuss.Length != 0)
+                        {
+
+
+                            <a target="_blank" href="@Url.Action("getSubCategoryDalfullSize", new { id = item.Id })">
+
+                                <img src="data:image/png;base64,@Convert.ToBase64String(@item.iconRuss, 0, @item.iconRuss.Length)" style="border:3px solid white;position:relative" width="65" height="50" />
+
+                            </a>
+                        }
+                        else
+                        {
+                            <b>لا يوجد ايقونة</b>
+                        }
+                    </td>
+
+                  
+                
+                    <td>                     
+                        @Html.ActionLink("حذف", "deleteSubCategoryDal", new { id = item.Id }, new { @class = "linkDel" })  &nbsp;&nbsp;&nbsp;
+                        @Html.ActionLink("تعديل", "EditSubCategoryDal", new { id = item.Id })
+                    </td>
+                </tr>
+                i++;
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
+<script>
+    $('.linkDel').confirm({
+        title: 'تأكيد الحذف !',
+
+        content: 'هل تريد بالتأكيد حذف هذا الحي  ؟',
+
+
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            },
+            إلغاء: function () {
+
+            }
+
+
+        }
+    });
+    $('a.twitter').confirm({
+        content: "...",
+    });
+    $('a.twitter').confirm({
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            }
+        }
+    });
+    $(".jconfirm-content-pane").removeClass("no-scroll");
+</script>

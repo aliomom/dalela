@@ -1,0 +1,217 @@
+﻿@model NawafizApp.Services.Dtos.NeihborhoodDto
+
+@using NawafizApp.Web.Models
+<style>
+    a {
+        text-shadow: none;
+        color: #afab14;
+    }
+
+    .searchform {
+        margin: 7px;
+    }
+
+    #form {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #dee19b;
+        margin-bottom: 5px;
+    }
+
+</style>
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>الاحياء
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("المحافظه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.stateId, Selects.states(null), new { @class = "form-control", id = "list1" })
+                        @Html.ValidationMessageFor(model => model.stateId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("المنطقه", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(model => model.RegionId, new List<SelectListItem> { }, new { @class = "form-control", id = "list2" })
+                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم العربي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ArabicName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ArabicName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الانكليزي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.EngName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EngName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الفرنسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.FrenchName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FrenchName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الفارسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.PersianName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PersianName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم الروسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.RussName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ArabicName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+             
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-md-2 col-xs-9 col-sm-2">
+                        <input type="submit" value="إضافة" class="btn btn-warning" style="width:100%" />
+                    </div>
+                </div>
+            </div>
+        }
+        @using (Ajax.BeginForm("getAllNeiborHood", new AjaxOptions { UpdateTargetId = "here", InsertionMode = InsertionMode.Replace, HttpMethod = "GET", LoadingElementId = "wait" }))
+        {
+            <div id="form" class="col-lg-offset-7 col-md-offset-4">
+                المحافظة :
+                @Html.DropDownList("state", Selects.states(null), new { id = "list3", @class = "searchform" })
+                المنطقة :
+                @Html.DropDownList("region", new List<SelectListItem> { }, new { id = "list4", @class = "searchform" })
+
+                <input type="submit" value="بحث" class="searchform" />
+            
+                    <span hidden="hidden"  id="wait" style="position:center">
+                        <b style="font-size:small">جاري المعالجة...</b> <img style="width:10%;height:10%" src="~/Images/loader.gif" />
+                    </span>
+
+                </div>             
+            <div >             
+      </div>
+                    }
+        
+    </div>
+</div>
+<div id="here" >
+
+      @{ Html.RenderAction("getAllNeiborHood"); }
+      
+   
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+  $("#list1").change(function () {
+
+
+                 $.ajax({
+                     type: 'post',
+                     url: '@Url.Action("getConvinientRegions", "NeiborHood")',
+                     data: { sid: $(this).val() },
+                     success: function (data) {
+
+                         // var ddldist2 = $('#listbox').parent().children().last();
+                         var ddldist = $('#list2');
+
+                         if (data.length == 1) {
+                             //ddldist.html("");// ddldist2.html("");
+                             ddldist.empty();
+
+
+
+                         }
+                         else {
+
+
+                             ddldist.empty();
+
+                             $.each(data, function (Val, Text) {
+
+
+
+                                 ddldist.append(
+                                     $('<option></option>').val(this.Value).html(this.Text)
+                                 );
+
+                             });
+
+
+
+
+
+
+
+                         }
+                         if ((this).val() == "-1") { ddldist.empty();}
+                     }
+                 });
+             });
+</script>
+<script>
+  $("#list3").change(function () {
+
+
+                 $.ajax({
+                     type: 'post',
+                     url: '@Url.Action("getConvinientRegions", "NeiborHood")',
+                     data: { sid: $(this).val() },
+                     success: function (data) {
+
+                         // var ddldist2 = $('#listbox').parent().children().last();
+                         var ddldist = $('#list4');
+
+                         if (data.length == 1) {
+                             //ddldist.html("");// ddldist2.html("");
+                             ddldist.empty();
+
+
+
+                         }
+                         else {
+
+
+                             ddldist.empty();
+
+                             $.each(data, function (Val, Text) {
+
+
+
+                                 ddldist.append(
+                                     $('<option></option>').val(this.Value).html(this.Text)
+                                 );
+
+                             });
+
+
+
+
+
+
+
+                         }
+                         if ((this).val() == "-1") { ddldist.empty();}
+                     }
+                 });
+             });
+</script>

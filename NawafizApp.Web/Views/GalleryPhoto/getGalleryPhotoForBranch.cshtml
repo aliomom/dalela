@@ -1,0 +1,114 @@
+﻿@model IEnumerable<NawafizApp.Services.Dtos.GalleryPhotoDto>
+<link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: right;
+    width:102.33%;
+    padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+    .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+        overflow: hidden !important;
+    }
+    .mt-card-item {
+    border: 1px solid #ffffff !important;
+    position: relative;
+    margin-bottom: 30px;
+}
+</style>
+
+
+
+
+        <div class="portlet box yellow">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers "></i>
+                    <span class="caption-subject  bold uppercase"> معرض الصور للفرع : @ViewBag.bname</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="mt-element-card mt-element-overlay">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                <div class="mt-card-item">
+                                    <div class="mt-card-avatar mt-overlay-1">
+                                        <div class="column">
+
+                                            <img src="data:image/png;base64,@Convert.ToBase64String(@item.photo,0,@item.photo.Length)" style="border:3px solid white;width:100% !important" />
+                                        </div>
+
+                                        <div class="mt-overlay">
+                                            <ul class="mt-info">
+                                                <li>
+                                                    <a class="btn default btn-outline" href="@Url.Action("Edit",new {id = item.Id,bid=item.BranchId,bname=item.branchName })">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+
+                                                    <a id="" class="btn default btn-outline linkDel" href="@Url.Action("deleteFromGalleryPhoto", new {id = item.Id,bid=item.BranchId,bname=item.branchName }) " >
+                                                        <i class="fa fa-remove"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+
+<style>
+
+</style>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-confirm.min.js"></script>
+<script>
+    $('.linkDel').confirm({
+        title: 'تأكيد الحذف !',
+
+        content: 'هل تريد بالتأكيد حذف هذه الصوره ؟',
+
+
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            },
+            إلغاء: function () {
+
+            }
+
+
+        }
+    });
+    $('a.twitter').confirm({
+        content: "...",
+    });
+    $('a.twitter').confirm({
+        buttons: {
+            نعم: function () {
+                location.href = this.$target.attr('href');
+            }
+        }
+    });
+    $(".jconfirm-content-pane").removeClass("no-scroll");
+</script>

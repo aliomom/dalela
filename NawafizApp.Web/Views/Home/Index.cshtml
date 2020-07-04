@@ -1,0 +1,173 @@
+﻿@*@using NawafizApp.Common;
+<div class="container-fluid">
+
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="index.html">تطبيق المبيعات</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>الرئيسية</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="تاريخ اليوم">
+                <i class="icon-calendar"></i>&nbsp;
+                <span class="thin uppercase hidden-xs">@DateTimeHelper.ConvertDateToString(DateTime.Now, DateFormats.DD_MM_YYYY) </span>&nbsp;
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div style="margin-top:10px">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 dark" href="#">
+                    <div class="visual">
+                        <i class="fa fa-globe"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            <span data-counter="counterup" data-value="1349">@ViewBag.numOFActs</span>
+                        </div>
+                        <div class="desc">عدد الفعاليات</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 dark" href="#">
+                    <div class="visual">
+                        <i class="fa fa-bar-chart-o"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            <span data-counter="counterup" data-value="12,5">@ViewBag.numOfActsToday</span>
+                        </div>
+                        <div class="desc"> المسجلين اليوم </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 dark" href="#">
+                    <div class="visual">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            <span data-counter="counterup" data-value="549">@ViewBag.numOfUsers</span>
+                        </div>
+                        <div class="desc"> عدد المستخدمين </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a class="dashboard-stat dashboard-stat-v2 dark" data-toggle="modal" href="#UsersWorking">
+                    <div class="visual">
+                        <i class="fa fa-user-secret"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            +
+                            <span data-counter="counterup" data-value="89">@ViewBag.numOfUsersToday</span>
+                        </div>
+                        <div class="desc">المستخدمين العاملين اليوم </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">اخر الإدخالات</span>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="portlet_comments_1">
+                        <!-- BEGIN: Comments -->
+
+                        <div class="mt-comments">
+
+                            @foreach (var item in ViewBag.last4)
+                            {
+                                <div class="mt-comment">
+                                    <div class="mt-comment-img">
+                                        <img src="../assets/pages/media/users/avatar1.jpg">
+                                    </div>
+                                    <div class="mt-comment-body">
+                                        <div class="mt-comment-info">
+                                            <span class="mt-comment-author">@item.UserFullName</span>
+                                            <span class="mt-comment-date">@item.dateAs   -   @item.timeAs </span>
+                                        </div>
+                                        <div class="mt-comment-text"> @item.name - @item.mainCategoryName - @item.SubCategoryName - @item.regionName - @item.NeihborhoodName </div>
+
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <!-- END: Comments -->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="UsersWorking" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">المستخدمين العاملين اليوم</h4>
+            </div>
+            <div class="modal-body">
+                <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+                    <div class="mayClass">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>تسلسل</th>
+                                        <th>الاسم</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int o = 1;
+                                    }
+                                    @foreach (var s in ViewBag.usersWorking)
+                                    {
+                                        <tr>
+                                            <td class="title2">@o </td>
+                                            <td> @s </td>
+
+                                        </tr>
+                                        o++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn dark btn-outline">إغلاق</button>
+
+            </div>
+        </div>
+    </div>
+</div>*@

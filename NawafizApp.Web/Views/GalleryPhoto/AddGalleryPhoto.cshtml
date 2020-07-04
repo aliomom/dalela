@@ -1,0 +1,47 @@
+﻿@model NawafizApp.Services.Dtos.GalleryPhotoDto
+
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>معرض الصور
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm("AddGalleryPhoto", "GalleryPhoto", FormMethod.Post, new
+        {
+            @enctype = "multipart/form-data",
+            id = "invoicePictureForm"
+        }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+               
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                <div class="form-group">
+                    @Html.Label(" اضافة صورة رقميه ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="btn btn-default image-preview-input" style="position:relative;margin-bottom:10px">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                            <span class="image-preview-input-title">أدخل الصورة</span>
+                            <input type="file" class="file" accept="image/png, image/jpeg, image/gif" name="file" /> <!-- rename it -->
+                            <span id="fup" class="error" style="display:none;color:#ed6b75;position:absolute;bottom:-19px;right:0">ادخل صوره رقميه</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <input name="bid" type="text" hidden="hidden" id="shopid" value="@ViewBag.bid" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="اضافة" class="btn btn-lg btn-circle" style="background-color:#222222;color:white" />
+                    </div>
+                </div>
+            </div>
+        }
+
+</div>
+    </div>

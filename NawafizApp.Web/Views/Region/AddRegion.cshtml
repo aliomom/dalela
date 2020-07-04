@@ -1,0 +1,81 @@
+﻿@model NawafizApp.Services.Dtos.RegionDto
+
+     @using NawafizApp.Web.Models
+
+    <style>
+        a {
+            text-shadow: none;
+            color: #afab14;
+        }
+    </style>
+    <div class="portlet box yellow">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-gift"></i>المناطق
+            </div>
+        </div>
+        <div class="portlet-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("المحافظه", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.StateId, Selects.states(null), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("الاسم العربي", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.ArabicName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.ArabicName, "", new { @class = "text-danger" })
+                        </div>
+                        </div>
+                    <div class="form-group">
+                        @Html.Label("الاسم الانكليزي", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.EngName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.EngName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("الاسم الفرنسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.FrenchName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.FrenchName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("الاسم الفارسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.PersianName, new { htmlAttributes = new { @class = "form-control" , autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.PersianName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("الاسم الروسي", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.RussName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.RussName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                  
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-md-2 col-xs-9 col-sm-2">
+                            <input type="submit" value="إضافة" class="btn btn-warning" style="width:100%" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div style="margin-top:5%;">
+                @{ Html.RenderAction("getAllRegion"); }
+            </div>
+        </div>
+    </div>
